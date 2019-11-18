@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.baike.mapper.RegisterMapper">
+
+    <insert id="userRegister" useGeneratedKeys="true" keyProperty="uID">
+        insert into BK_User (account, password, salt)
+        values (#{account}, #{password}, #{salt})
+    </insert>
+    <insert id="addInfo">
+        insert into BK_UserInfo (uID, nickName, icon, state, introduction)
+        values (#{uID}, #{nickName}, #{iconURL}, #{state}, introduction)
+    </insert>
+    <delete id="rollBackUser">
+        delete from BK_User where uID = #{uID}
+    </delete>
+</mapper>
