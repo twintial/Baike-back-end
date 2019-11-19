@@ -15,7 +15,6 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
-D:
 *.iws
 *.iml
 *.ipr
@@ -32,3 +31,4 @@ build/
 .vscode/
 /D:/
 /D:/
+/log/
