@@ -1,9 +1,0 @@
-2019-11-19 13:52:12,595 [INFO] [main] com.example.baike.BaikeApplication [StartupInfoLogger.java : 55] Starting BaikeApplication on shenjunjiedeMacBook-Pro.local with PID 87046 (/Users/hailuo/Desktop/baike/target/classes started by hailuo in /Users/hailuo/Desktop/baike)
-2019-11-19 13:52:12,599 [INFO] [main] com.example.baike.BaikeApplication [SpringApplication.java : 651] No active profile set, falling back to default profiles: default
-2019-11-19 13:52:13,696 [INFO] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [TomcatWebServer.java : 92] Tomcat initialized with port(s): 8443 (http)
-2019-11-19 13:52:13,708 [INFO] [main] org.apache.catalina.core.StandardService [DirectJDKLog.java : 173] Starting service [Tomcat]
-2019-11-19 13:52:13,709 [INFO] [main] org.apache.catalina.core.StandardEngine [DirectJDKLog.java : 173] Starting Servlet engine: [Apache Tomcat/9.0.27]
-2019-11-19 13:52:13,795 [INFO] [main] o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [DirectJDKLog.java : 173] Initializing Spring embedded WebApplicationContext
-2019-11-19 13:52:13,796 [INFO] [main] org.springframework.web.context.ContextLoader [ServletWebServerApplicationContext.java : 284] Root WebApplicationContext: initialization completed in 1146 ms
-2019-11-19 13:52:14,382 [INFO] [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [TomcatWebServer.java : 204] Tomcat started on port(s): 8443 (http) with context path ''
-2019-11-19 13:52:14,387 [INFO] [main] com.example.baike.BaikeApplication [StartupInfoLogger.java : 61] Started BaikeApplication in 2.543 seconds (JVM running for 2.905)
