@@ -8,7 +8,7 @@
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--<File>/home/hfw-client/hfw_log/stdout.log</File>-->
-        <File>D:/log/hfw-client/hfw_log/stdout.log</File>
+        <File>log/hfw-client/hfw_log/stdout.log</File>
         <encoder>
             <pattern>%date [%level] [%thread] %logger{60} [%file : %line] %msg%n</pattern>
         </encoder>
