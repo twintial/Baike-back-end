@@ -23,12 +23,17 @@ import java.util.Objects;
 //Slf4j记录日志
 
 @Slf4j
+//控制类
 @RestController
+
 @RequestMapping("/api")
 public class LoginController {
     @Autowired
     LoginService loginService;
 
+    //Login的@PostMapping
+    //@RequestBody 接受前端的json数据
+    //此处@Valid验证BKLoginInfo的格式
     @PostMapping("/login")
     public Result Login(@Valid @RequestBody BKLoginInfo loginInfo, BindingResult bindingResult, HttpSession session){
         if (bindingResult.hasErrors()){
