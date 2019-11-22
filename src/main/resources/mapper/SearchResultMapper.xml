@@ -15,8 +15,9 @@
         <result property="icon" column="icon"/>
         <result property="SearchName" column="videoName"/>
     </resultMap>
+
     <select id="selectByName" resultMap="InteractiveVideoMap">
         select * from BK_InteractiveVideo
-        where videoName  = #{SearchName}
+        where videoName  LIKE CONCAT('%',#{SearchName},'%')
     </select>
 </mapper>

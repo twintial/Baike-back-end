@@ -16,7 +16,7 @@ public class BKInteractiveVideo extends BKUserSearch {
     private Integer collectPoint;
     private String tag;
     private Integer state;
-    private Date uploadTime;
+    private String uploadTime;
     private Integer initVideoID;
     private String icon;
 }

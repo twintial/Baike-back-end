@@ -6,8 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Mapper
+//@param是传入xml中的参数
 public interface SearchResultMapper {
-    BKInteractiveVideo selectByName(@Param("SearchName") String SearchName);
+    List<BKInteractiveVideo> selectByName(@Param("SearchName") String SearchName);
 }

@@ -7,13 +7,15 @@ import com.example.baike.service.SearchVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SearchVideoServiceImpl implements SearchVideoService {
 
     @Autowired
     SearchResultMapper searchResultMapper;
 
-    public BKInteractiveVideo selectByName(String SearchName){
+    public List<BKInteractiveVideo> selectByName(String SearchName){
         return searchResultMapper.selectByName(SearchName);
     }
 }

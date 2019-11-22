@@ -2,6 +2,8 @@ package com.example.baike.service;
 
 import com.example.baike.model.BKInteractiveVideo;
 
+import java.util.List;
+
 public interface SearchVideoService {
-    BKInteractiveVideo selectByName(String SearchName);
+    List<BKInteractiveVideo> selectByName(String SearchName);
 }

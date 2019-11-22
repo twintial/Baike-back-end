@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 //控制类
@@ -22,8 +23,9 @@ public class SearchVideoController {
 
 
     @GetMapping("/SearchVideo/{title}")
-    public Integer Search(@PathVariable("title") String SearchName){
-        return searchVideoService.selectByName(SearchName).getUID();
+    public List<BKInteractiveVideo> Search(@PathVariable("title") String SearchName){
+        List<BKInteractiveVideo>p= searchVideoService.selectByName(SearchName);
+        return p;
     }
 
 }
