@@ -10,16 +10,13 @@ package com.example.baike.result;
 public class ResultFactory {
 
     public static Result buildSuccessResult(Object data) {
-        return buildResult(ResultCode.SUCCESS, "success", data);
+        return buildResult(ResultCode.SUCCESS.code, "success", data);
     }
 
     public static Result buildFailResult(String message) {
-        return buildResult(ResultCode.FAIL, message, null);
+        return buildResult(ResultCode.FAIL.code, message, null);
     }
 
-    private static Result buildResult(ResultCode resultCode, String message, Object data) {
-        return buildResult(resultCode.code, message, data);
-    }
 
     private static Result buildResult(int resultCode, String message, Object data) {
         return new Result(resultCode, message, data);

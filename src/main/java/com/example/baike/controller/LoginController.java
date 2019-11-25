@@ -32,36 +32,10 @@ public class LoginController {
     @PostMapping("/login")
     public Result Login(@Valid @RequestBody BKLoginInfo loginInfo, BindingResult bindingResult, HttpSession session){
         if (bindingResult.hasErrors()){
-            String msg = String.format("注册失败，详细信息[%s]。",
+            String msg = String.format("登陆失败，%s。",
                     Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage());
             return ResultFactory.buildFailResult(msg);
         }
-        if (session.getAttribute("user") != null){
-            return ResultFactory.buildFailResult("已经登陆了啦");
-        }
-        BKUser user;
-        UserState state;
-        log.info(loginInfo.getAccount());
-        try {
-            log.info("dd");
-            log.info(loginService.toString());
-            log.info("aa");
-            user = loginService.selectByAccount(loginInfo.getAccount());
-            state = loginService.selectStateByUID(user.getUID());
-        }catch (Exception e){
-            return ResultFactory.buildFailResult(e.toString());
-        }
-        if (state.equals(UserState.BANNED)){
-            return ResultFactory.buildFailResult("用户被封禁");
-        }
-        // md5加密
-        String salt = user.getSalt();
-        String MD5Pwd = MD5Util.getMD5Pwd(loginInfo.getPassword(), salt);
-        if (MD5Pwd.equals(user.getPassword())){
-            // session存储
-            session.setAttribute("user", user);
-            return ResultFactory.buildSuccessResult(user.getAccount());
-        }
-        return ResultFactory.buildFailResult("密码错误");
+        return loginService.login(loginInfo.getAccount(), loginInfo.getPassword(), session);
     }
 }

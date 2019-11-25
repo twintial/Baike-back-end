@@ -7,8 +7,17 @@ spring:
     username: root
     password: abcd1234
     driverClassName: com.mysql.cj.jdbc.Driver
+  http:
+    multipart:
+      max-file-size: 2GB
+      max-request-size: 5GB
 
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.example.baike.model
   config-location: classpath:mybatis-config.xml
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+

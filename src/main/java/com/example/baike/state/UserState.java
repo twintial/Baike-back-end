@@ -1,7 +1,6 @@
 package com.example.baike.state;
 
-public enum  UserState
-{
+public enum UserState {
     BANNED,
     NORMAL
 }

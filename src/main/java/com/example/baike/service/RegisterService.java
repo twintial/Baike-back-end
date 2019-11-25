@@ -2,9 +2,8 @@ package com.example.baike.service;
 
 import com.example.baike.model.BKUser;
 import com.example.baike.model.BKUserInfo;
+import com.example.baike.result.Result;
 
 public interface RegisterService {
-    Long userRegister(BKUser user);
-    Long addInfo(BKUserInfo info);
-    Long rollBackUser(BKUser user);
+    Result register(String account, String pwd, String nickName);
 }
