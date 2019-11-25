@@ -11,6 +11,7 @@ import com.example.baike.result.ResultFactory;
 import com.example.baike.service.InteractiveVideoService;
 import com.example.baike.state.VideoState;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -141,8 +142,8 @@ public class InteractiveVideoServiceImpl implements InteractiveVideoService {
         PageHelper.startPage(pageNum,1);
         List<BKInteractiveVideo> videos = interactiveVideoMapper
                 .selectInterVideosByUserIf(user.getUID(), videoState);
-        log.info(String.valueOf(videos.size()));
-        return ResultFactory.buildSuccessResult(videos);
+        PageInfo page = new PageInfo(videos);
+        return ResultFactory.buildSuccessWithMsg(String.valueOf(page.getPages()), videos);
     }
 
     @Override
