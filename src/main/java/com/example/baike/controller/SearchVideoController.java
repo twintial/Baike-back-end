@@ -24,8 +24,8 @@ public class SearchVideoController {
 
 
     @GetMapping("/SearchVideo/{title}/{tag}/{page}")
-    public BKSearchVideoListViewModel Search(@PathVariable("title") String SearchName
-    , @PathVariable("tag") String tag, @PathVariable("page") Integer page){
+    public BKSearchVideoListViewModel Search(@PathVariable("title") String SearchName,
+                                             @PathVariable("tag") String tag, @PathVariable("page") Integer page){
         return  searchVideoService.selectByName(SearchName,tag,page);
 
 //        PageInfo<BKInteractiveVideo> pageInfo = new PageInfo<>(searchVideoService.selectByName(SearchName));
