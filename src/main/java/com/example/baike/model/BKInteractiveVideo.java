@@ -3,11 +3,12 @@ package com.example.baike.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
 import java.util.Date;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode()
 @Data
-public class BKInteractiveVideo extends BKUserSearch {
+public class BKInteractiveVideo implements Serializable {
     private Integer uID;
     private Integer interVideoID;
     private String introduction;
@@ -19,4 +20,5 @@ public class BKInteractiveVideo extends BKUserSearch {
     private String uploadTime;
     private Integer initVideoID;
     private String icon;
+    private String videoName;
 }
