@@ -19,7 +19,7 @@ public class BKVideoUploadViewModel extends BKInteractiveVideo{
     /**
      * 视频名称
      */
-    @NotNull(message = "视频不能为空")
+    @NotNull(message = "视频标题不能为空")
     private List<String> videoNames;
 
     /**

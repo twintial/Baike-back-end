@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RegisterServiceImpl implements RegisterService {
     private static final String DEFAULT_USER_ICON = "static/userIcon/default.jpg";
+    private static final String DEFAULT_BACK_ICON = "static/userIcon/default.jpg";
     @Autowired
     private RegisterMapper registerMapper;
 
@@ -41,6 +42,7 @@ public class RegisterServiceImpl implements RegisterService {
         userInfo.setNickName(nickName);
         userInfo.setState(UserState.NORMAL);
         userInfo.setIconURL(DEFAULT_USER_ICON);
+        userInfo.setBackgroundIconURL(DEFAULT_BACK_ICON);
         try{
             registerMapper.addInfo(userInfo);
         }catch (Exception e){
