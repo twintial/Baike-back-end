@@ -42,4 +42,20 @@
             </if>
         </where>
     </select>
+
+    <resultMap id="videoMap" type="BKVideo">
+        <id property="videoID" column="videoID"/>
+        <result property="interVideoID" column="interVideoID"/>
+        <result property="videoURL" column="videoURL"/>
+        <result property="title" column="title"/>
+    </resultMap>
+    <select id="selectVideoByInterVID" resultMap="videoMap">
+        select videoURL, title
+        from BK_Video
+        <where>
+            <if test="ivID != null">
+                and ivID = #{uID}
+            </if>
+        </where>
+    </select>
 </mapper>
