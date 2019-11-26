@@ -7,8 +7,8 @@
         values (#{account}, #{password}, #{salt})
     </insert>
     <insert id="addInfo">
-        insert into BK_UserInfo (uID, nickName, icon, state, introduction)
-        values (#{uID}, #{nickName}, #{iconURL}, #{state}, introduction)
+        insert into BK_UserInfo (uID, nickName, icon, state, introduction, backgroundIcon)
+        values (#{uID}, #{nickName}, #{iconURL}, #{state}, #{introduction}, #{backgroundIconURL})
     </insert>
     <delete id="rollBackUser">
         delete from BK_User where uID = #{uID}

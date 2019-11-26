@@ -4,10 +4,11 @@ import com.example.baike.state.VideoState;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class BKInteractiveVideo {
+public class BKInteractiveVideo implements Serializable {
     /**
      * 互动视频idBK
      */

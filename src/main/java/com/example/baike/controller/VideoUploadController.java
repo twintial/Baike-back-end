@@ -46,6 +46,7 @@ public class VideoUploadController {
 
     @DeleteMapping("/upload/{uuid}/{type}")
     public boolean delete(@PathVariable("uuid") String uuid, @PathVariable("type") String type){
+        log.info(baseURL + tempURL + uuid + "." + type);
         return interactiveVideoService.deleteFile(new File(baseURL + tempURL + uuid + "." + type));
     }
 

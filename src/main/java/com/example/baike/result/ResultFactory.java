@@ -10,9 +10,11 @@ package com.example.baike.result;
 public class ResultFactory {
 
     public static Result buildSuccessResult(Object data) {
-        return buildResult(ResultCode.SUCCESS.code, "success", data);
+        return buildSuccessWithMsg("success", data);
     }
-
+    public static Result buildSuccessWithMsg(String message, Object data){
+        return buildResult(ResultCode.SUCCESS.code, message, data);
+    }
     public static Result buildFailResult(String message) {
         return buildResult(ResultCode.FAIL.code, message, null);
     }
