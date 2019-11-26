@@ -38,4 +38,9 @@ public class BKUserInfo implements Serializable {
      * 用户简介
      */
     private String introduction;
+
+    /**
+     * 用户背景图
+     */
+    private String backgroundIconURL;
 }

@@ -2,8 +2,10 @@ package com.example.baike.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class BKVideo {
+public class BKVideo implements Serializable {
     /**
      * 视频id
      */
