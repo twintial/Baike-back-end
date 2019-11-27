@@ -1,10 +1,7 @@
 package com.example.baike.service.impl;
 
 import com.example.baike.mapper.InteractiveVideoMapper;
-import com.example.baike.model.BKInteractiveVideo;
-import com.example.baike.model.BKUser;
-import com.example.baike.model.BKVideo;
-import com.example.baike.model.BKVideoUploadViewModel;
+import com.example.baike.model.*;
 import com.example.baike.result.ResourceResult;
 import com.example.baike.result.Result;
 import com.example.baike.result.ResultFactory;
@@ -75,7 +72,7 @@ public class InteractiveVideoServiceImpl implements InteractiveVideoService {
     public Result uploadInteractiveVideo(BKVideoUploadViewModel uploadViewModel, HttpSession session) {
         BKUser user = (BKUser) session.getAttribute("user");
         if (user == null){
-            return ResultFactory.buildFailResult("未登陆");
+            return ResultFactory.buildFailResult("Please Login");
         }
         File file;
         // 插入互动视频
@@ -114,7 +111,7 @@ public class InteractiveVideoServiceImpl implements InteractiveVideoService {
         for (int i = 0; i < uploadViewModel.getVideoFilesUUID().size(); i++) {
             BKVideo video = new BKVideo();
             video.setInterVideoID(uploadViewModel.getInterVideoID());
-            video.setTitle(uploadViewModel.getVideoNames().get(i));
+            video.setTitle("P" + (i+1) + "_" + uploadViewModel.getVideoNames().get(i));
             video.setVideoURL("video" + File.separator + uploadViewModel.getInterVideoID() +
                     File.separator + uploadViewModel.getVideoFilesUUID().get(i));
             videos.add(video);
@@ -150,5 +147,12 @@ public class InteractiveVideoServiceImpl implements InteractiveVideoService {
     public Result deleteInteractiveVideoByID(Integer vID) {
         interactiveVideoMapper.deleteInteractiveVideoByID(vID);
         return ResultFactory.buildSuccessResult("success");
+    }
+
+    @Override
+    public Result findInterVideoInfoByVID(Integer interVID) {
+        BKVideoPlayVideoModel videoPlayVideoModel = interactiveVideoMapper.findVideoPlayPageInfo(interVID);
+
+        return ResultFactory.buildSuccessResult(videoPlayVideoModel);
     }
 }

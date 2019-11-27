@@ -3,6 +3,7 @@ package com.example.baike.controller;
 import com.example.baike.mapper.InteractiveVideoMapper;
 import com.example.baike.model.BKInteractiveVideo;
 import com.example.baike.model.BKUser;
+import com.example.baike.model.ReadBarrageViewModel;
 import com.example.baike.result.Result;
 import com.example.baike.result.ResultFactory;
 import com.example.baike.service.InteractiveVideoService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.baike.state.VideoState.*;
@@ -43,6 +45,6 @@ public class InteractiveVideoController {
 
     @GetMapping("/video/{vID}")
     public Result getVideo(@PathVariable @NotNull Integer vID){
-        return ResultFactory.buildSuccessResult(vID);
+        return interactiveVideoService.findInterVideoInfoByVID(vID);
     }
 }

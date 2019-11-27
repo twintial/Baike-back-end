@@ -13,9 +13,9 @@ public class BKBarrage implements Serializable {
     private Integer uID;
 
     /**
-     * 弹幕所在的互动视频id
+     * 弹幕所在的单个视频id
      */
-    private Integer interVideoID;
+    private Integer videoID;
 
     /**
      * 弹幕内容
@@ -30,5 +30,15 @@ public class BKBarrage implements Serializable {
     /**
      * 在视频中出现的时间
      */
-    private Date videoTime;
+    private Double videoTime;
+
+    /**
+     * 弹幕颜色
+     */
+    private Integer color;
+
+    /**
+     * 弹幕类型
+     */
+    private Integer bType;
 }

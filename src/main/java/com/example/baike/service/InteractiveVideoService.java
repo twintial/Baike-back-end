@@ -19,4 +19,5 @@ public interface InteractiveVideoService {
     Result uploadInteractiveVideo(BKVideoUploadViewModel uploadViewModel, HttpSession session);
     Result getInteractiveVideoPage(String state ,Integer pageNum ,HttpSession session);
     Result deleteInteractiveVideoByID(Integer vID);
+    Result findInterVideoInfoByVID(Integer interVID);
 }

@@ -1,5 +1,6 @@
 package com.example.baike;
 
+import com.example.baike.constant.ResourcePath;
 import com.example.baike.interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
@@ -31,10 +32,10 @@ public class MyMvcConfig extends WebMvcConfigurationSupport {
     // 跨域资源路径映射
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        final String baseURL = System.getProperty("user.dir") + File.separator + "src"
-                + File.separator + "resources" + File.separator;
+//        final String baseURL = System.getProperty("user.dir") + File.separator + "src"
+//                + File.separator + "resources" + File.separator;
 //        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-        registry.addResourceHandler("/**").addResourceLocations("file:" + baseURL);
+        registry.addResourceHandler("/**").addResourceLocations("file:" + ResourcePath.baseURL);
     }
 
 //    // 拦截器配置重定向有问题

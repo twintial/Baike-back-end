@@ -17,19 +17,14 @@ public enum ResultCode {
     FAIL(400),
 
     /**
-     * 未认证（签名错误）
+     * 弹幕发送成功
      */
-    UNAUTHORIZED(401),
+    BARRAGE_SEND_SUCCESS(0),
 
     /**
-     * 接口不存在
+     * 弹幕投放成功
      */
-    NOT_FOUND(404),
-
-    /**
-     * 服务器内部错误
-     */
-    INTERNAL_SERVER_ERROR(500);
+    BARRAGE_READ_SUCCESS(1);
 
     public int code;
 

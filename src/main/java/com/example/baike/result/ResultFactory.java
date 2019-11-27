@@ -8,7 +8,9 @@ package com.example.baike.result;
  * @memo 无备注说明
  */
 public class ResultFactory {
-
+    public static Result buildCustomResult(Integer code, String message, Object data){
+        return new Result(code, message, data);
+    }
     public static Result buildSuccessResult(Object data) {
         return buildSuccessWithMsg("success", data);
     }

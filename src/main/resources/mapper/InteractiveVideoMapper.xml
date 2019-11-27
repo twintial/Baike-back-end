@@ -42,4 +42,71 @@
             </if>
         </where>
     </select>
+
+<!--    查找用户信息-->
+    <resultMap id="userInfoMap" type="BKUserInfo">
+        <id property="uID" column="uID"/>
+        <result property="nickName" column="nickName"/>
+        <result property="iconURL" column="icon"/>
+        <result property="introduction" column="introduction"/>
+    </resultMap>
+    <select id="selectUserInfoByInterVideoID" resultMap="userInfoMap">
+        select nickName, icon, introduction
+        from BK_UserInfo
+        where uID = #{id}
+    </select>
+
+<!--    查找视频评论-->
+    <resultMap id="commentMap" type="CommentViewModel">
+        <id property="uID" column="uID"/>
+        <result property="interVideoID" column="interVideoID"/>
+        <result property="content" column="content"/>
+        <result property="time" column="time" jdbcType="TIMESTAMP"/>
+        <result property="icon" column="icon"/>
+        <result property="nickName" column="nickName"/>
+    </resultMap>
+    <select id="selectCommentsByInterVideoID" resultMap="commentMap">
+        select c.interVideoID, c.content, c.time, uf.icon, uf.nickName
+        from BK_Comments c  inner join BK_UserInfo uf
+        where interVideoID = #{id}
+    </select>
+
+<!--查找视频-->
+    <resultMap id="videoMap" type="BKVideo">
+        <id property="videoID" column="videoID"/>
+        <result property="interVideoID" column="interVideoID"/>
+        <result property="videoURL" column="videoURL"/>
+        <result property="title" column="title"/>
+    </resultMap>
+    <select id="selectVideoByVID" resultMap="videoMap">
+        select videoURL
+        from BK_Video
+        <where>
+            <if test="id != null">
+                and videoID = #{id}
+            </if>
+        </where>
+    </select>
+
+<!--    查找下一个视频-->
+    <resultMap id="nextVideoMap" type="BKNextVideo">
+        <id property="videoID" column="videoID"/>
+        <id property="nextVideoID" column="nextVideoID"/>
+        <id property="choice" column="choice"/>
+    </resultMap>
+    <select id="selectNextVideoByNowVID" resultMap="nextVideoMap">
+        select * from BK_NextVideo
+        where videoID = #{videoID}
+    </select>
+
+    <resultMap id="playPageInfoSelect" extends="interVideoMap" type="BKVideoPlayVideoModel">
+        <association property="userInfo" select="selectUserInfoByInterVideoID" column="{id=uID}"/>
+        <association property="initVideo" select="selectVideoByVID" column="{id=initVideoID}"/>
+        <association property="nextVideos" select="selectNextVideoByNowVID" column="{videoID=initVideoID}"/>
+        <collection property="comments" select="selectCommentsByInterVideoID" column="{id=interVideoID}"/>
+    </resultMap>
+    <select id="findVideoPlayPageInfo" resultMap="playPageInfoSelect">
+        select * from BK_InteractiveVideo
+        where interVideoID = #{interVideoID}
+    </select>
 </mapper>

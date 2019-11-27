@@ -2,6 +2,7 @@ package com.example.baike.mapper;
 
 import com.example.baike.model.BKInteractiveVideo;
 import com.example.baike.model.BKVideo;
+import com.example.baike.model.BKVideoPlayVideoModel;
 import com.example.baike.model.BKVideoUploadViewModel;
 import com.example.baike.state.VideoState;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,4 +16,5 @@ public interface InteractiveVideoMapper {
     Long insertVideo(List<BKVideo> videos);
     Long deleteInteractiveVideoByID(@Param("vID") Integer vID);
     List<BKInteractiveVideo> selectInterVideosByUserIf(@Param("uID") Integer uID, @Param("state")VideoState state);
+    BKVideoPlayVideoModel findVideoPlayPageInfo(@Param("interVideoID") Integer interVideoID);
 }
