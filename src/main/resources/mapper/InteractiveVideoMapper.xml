@@ -64,7 +64,7 @@
 
     <update id="updateInterVideoStartVideo">
         update BK_InteractiveVideo
-        set initVideoID = #{initVideoID}
+        set initVideoID = #{initVideoID}, state = 2
         where interVideoID = #{interVideoID}
     </update>
 
