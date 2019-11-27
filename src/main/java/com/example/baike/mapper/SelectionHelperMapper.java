@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 @Mapper
-@Repository
 public interface SelectionHelperMapper {
     Integer selectByNickName(@Param("nickName") String nickName);
     Integer selectByAccount(@Param("account") String account);

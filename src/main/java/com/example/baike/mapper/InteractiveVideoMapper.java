@@ -1,6 +1,7 @@
 package com.example.baike.mapper;
 
 import com.example.baike.model.BKInteractiveVideo;
+import com.example.baike.model.BKNextVideo;
 import com.example.baike.model.BKVideo;
 import com.example.baike.model.BKVideoUploadViewModel;
 import com.example.baike.state.VideoState;
@@ -16,6 +17,10 @@ public interface InteractiveVideoMapper {
     Long insertInteractiveVideo(BKVideoUploadViewModel uploadViewModel);
     Long insertVideo(List<BKVideo> videos);
     Long deleteInteractiveVideoByID(@Param("vID") Integer vID);
+    Long updateInterVideoStartVideo
+            (@Param("interVideoID") Integer interVideoID, @Param("initVideoID") Integer initVideoID);
+    Long insertNextVideo(BKNextVideo bkNextVideo);
+
     List<BKInteractiveVideo> selectInterVideosByUserIf(@Param("uID") Integer uID, @Param("state")VideoState state);
-    List<BKVideo> selectVideoByInterVID(@Param("ivID") Integer ivID);
+    List<BKVideo> selectVideoByInterVID(@Param("interVideoID") Integer interVideoID);
 }

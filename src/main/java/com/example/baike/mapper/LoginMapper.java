@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Mapper
-@Repository
 public interface LoginMapper {
     BKUser selectByAccount(@Param("account") String account);
     UserState selectStateByUID(@Param("uID") Integer uID);
