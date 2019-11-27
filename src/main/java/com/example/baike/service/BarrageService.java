@@ -8,5 +8,5 @@ import javax.servlet.http.HttpSession;
 
 public interface BarrageService {
     Result insertBarrage(BKBarrageViewModel barrageViewModel, HttpSession session);
-    ReadBarrageViewModel selectAllBarragesByVID(Integer vID);
+    Object[][] selectAllBarragesByID(Integer vID);
 }

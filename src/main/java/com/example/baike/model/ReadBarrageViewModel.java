@@ -31,6 +31,7 @@ public class ReadBarrageViewModel implements Serializable {
     private String uID;
 
     /**
-     * 
+     * 弹幕内容
      */
+    private String content;
 }

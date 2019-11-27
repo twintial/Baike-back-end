@@ -22,16 +22,16 @@ public class BarrageServiceImpl implements BarrageService {
     BarrageMapper barrageMapper;
     @Override
     public Result insertBarrage(BKBarrageViewModel barrageViewModel, HttpSession session) {
-        BKUser user = (BKUser) session.getAttribute("user");
-        if (user == null){
-            return ResultFactory.buildFailResult("Please Login");
-        }
+//        BKUser user = (BKUser) session.getAttribute("user");
+//        if (user == null){
+//            return ResultFactory.buildFailResult("Please Login");
+//        }
         Integer nRGB = RGBColorToIntUtil.RGBToInt(barrageViewModel.getColor());
         if (nRGB == null){
             return ResultFactory.buildFailResult("error occur when casting color");
         }
         BKBarrage barrage = new BKBarrage();
-        barrage.setUID(user.getUID());
+        barrage.setUID(10036);
         barrage.setContent(barrageViewModel.getText());
         barrage.setVideoTime(barrageViewModel.getTime());
         barrage.setSendTime(new Date());
@@ -43,9 +43,14 @@ public class BarrageServiceImpl implements BarrageService {
     }
 
     @Override
-    public ReadBarrageViewModel selectAllBarragesByVID(Integer vID) {
-        List<BKBarrage> barrages = barrageMapper.selectAllBarragesByVID(vID);
-
-        return null;
+    public Object[][] selectAllBarragesByID(Integer vID) {
+        List<ReadBarrageViewModel> proBarrages = barrageMapper.selectAllBarragesByID(vID);
+        Object[][] barrages = new Object[proBarrages.size()][5];
+        for (int i = 0; i < proBarrages.size(); i++) {
+            ReadBarrageViewModel barrage = proBarrages.get(i);
+            Object[] objects = {barrage.getTime(), barrage.getBType(), barrage.getColor(), barrage.getUID(), barrage.getContent()};
+            barrages[i] = objects;
+        }
+        return barrages;
     }
 }
