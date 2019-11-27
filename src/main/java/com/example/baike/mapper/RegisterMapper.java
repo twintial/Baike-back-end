@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 @Mapper
-@Repository
 public interface RegisterMapper {
     Long userRegister(BKUser user);
     Long addInfo(BKUserInfo info);

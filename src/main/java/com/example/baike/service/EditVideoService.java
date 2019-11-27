@@ -8,5 +8,5 @@ import java.io.IOException;
 
 public interface EditVideoService {
     Result getVideoList(Integer interVID);
-    ResourceResult getInterVideoStructure(MultipartFile file) throws IOException;
+    Result getInterVideoStructure(String structure, Integer interVID);
 }

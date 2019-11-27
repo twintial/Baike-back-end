@@ -23,9 +23,9 @@ public class EditVideoController {
         return editVideoService.getVideoList(interVideoID);
     }
 
-    @PostMapping("/edit/upload")
-    public ResourceResult getStructure(@RequestParam("file") MultipartFile file) throws IOException {
-        return editVideoService.getInterVideoStructure(file);
+    @PostMapping("/edit")
+    public Result getStructure(@RequestParam("ID") Integer IVID, @RequestParam("Structure") String structure) {
+        return editVideoService.getInterVideoStructure(structure, IVID);
     }
 
 }
