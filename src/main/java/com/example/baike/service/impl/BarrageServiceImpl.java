@@ -22,6 +22,7 @@ public class BarrageServiceImpl implements BarrageService {
     BarrageMapper barrageMapper;
     @Override
     public Result insertBarrage(BKBarrageViewModel barrageViewModel, HttpSession session) {
+        // 测试用暂时改成这样
 //        BKUser user = (BKUser) session.getAttribute("user");
 //        if (user == null){
 //            return ResultFactory.buildFailResult("Please Login");

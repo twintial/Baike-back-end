@@ -39,7 +39,7 @@ public class LoginServiceImpl implements LoginService {
         if (MD5Pwd.equals(user.getPassword())){
             // session存储
             session.setAttribute("user", user);
-            return ResultFactory.buildSuccessResult(user.getAccount());
+            return ResultFactory.buildSuccessResult(user.getUID());
         }
         return ResultFactory.buildFailResult("密码错误");
     }
