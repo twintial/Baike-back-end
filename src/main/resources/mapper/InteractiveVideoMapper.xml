@@ -113,12 +113,6 @@
         where interVideoID = #{interVideoID}
     </select>
 
-    <resultMap id="videoMap" type="BKVideo">
-        <id property="videoID" column="videoID"/>
-        <result property="interVideoID" column="interVideoID"/>
-        <result property="videoURL" column="videoURL"/>
-        <result property="title" column="title"/>
-    </resultMap>
     <select id="selectVideoByInterVID" resultMap="videoMap">
         select videoURL, title, interVideoID, videoID
         from BK_Video
