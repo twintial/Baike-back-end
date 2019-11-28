@@ -32,7 +32,7 @@ public class BarrageServiceImpl implements BarrageService {
             return ResultFactory.buildFailResult("error occur when casting color");
         }
         BKBarrage barrage = new BKBarrage();
-        barrage.setUID(10036);
+        barrage.setUID(Integer.parseInt(barrageViewModel.getAuthor()));
         barrage.setContent(barrageViewModel.getText());
         barrage.setVideoTime(barrageViewModel.getTime());
         barrage.setSendTime(new Date());
