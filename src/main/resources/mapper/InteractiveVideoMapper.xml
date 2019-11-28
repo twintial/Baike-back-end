@@ -5,6 +5,7 @@
         insert into BK_InteractiveVideo (uID, videoName, introduction, tag, state, uploadTime, icon)
         values (#{uID}, #{videoName}, #{introduction}, #{tag}, #{state}, #{uploadTime}, #{icon})
     </insert>
+
     <insert id="insertVideo" useGeneratedKeys="true" keyProperty="videoID">
         insert into BK_Video (interVideoID, videoURL, title)
         values
@@ -12,10 +13,12 @@
             (#{video.interVideoID}, #{video.videoURL}, #{video.title})
         </foreach>
     </insert>
+
     <delete id="deleteInteractiveVideoByID">
         delete from BK_InteractiveVideo
         where interVideoID = #{vID}
     </delete>
+
     <resultMap id="interVideoMap" type="BKInteractiveVideo">
         <id property="interVideoID" column="interVideoID"/>
         <result property="uID" column="uID"/>
@@ -109,4 +112,31 @@
         select * from BK_InteractiveVideo
         where interVideoID = #{interVideoID}
     </select>
+
+    <resultMap id="videoMap" type="BKVideo">
+        <id property="videoID" column="videoID"/>
+        <result property="interVideoID" column="interVideoID"/>
+        <result property="videoURL" column="videoURL"/>
+        <result property="title" column="title"/>
+    </resultMap>
+    <select id="selectVideoByInterVID" resultMap="videoMap">
+        select videoURL, title, interVideoID, videoID
+        from BK_Video
+        <where>
+            <if test="interVideoID != null">
+                and interVideoID = #{interVideoID}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateInterVideoStartVideo">
+        update BK_InteractiveVideo
+        set initVideoID = #{initVideoID}, state = 2
+        where interVideoID = #{interVideoID}
+    </update>
+
+    <insert id="insertNextVideo">
+        insert into BK_NextVideo (videoID, nextVideoID, choice)
+        values (#{videoID}, #{nextVideoID}, #{choice})
+    </insert>
 </mapper>

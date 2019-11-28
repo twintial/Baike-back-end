@@ -1,6 +1,6 @@
 package com.example.baike.state;
 
-public enum  VideoState {
+public enum VideoState {
     BANNED,
     EDITABLE,
     PUBLISH
