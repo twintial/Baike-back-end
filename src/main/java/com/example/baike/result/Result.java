@@ -11,7 +11,7 @@ public class Result {
     /**
      * 响应提示信息
      */
-    private String message;
+    private String msg;
     /**
      * 响应结果对象
      */
@@ -19,7 +19,7 @@ public class Result {
 
     Result(int code, String message, Object data) {
         this.code = code;
-        this.message = message;
+        this.msg = message;
         this.data = data;
     }
 

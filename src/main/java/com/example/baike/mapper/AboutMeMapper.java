@@ -24,4 +24,12 @@ public interface AboutMeMapper {
     Long deleteUsersFollowByID(@Param("vID") Integer vID, @Param("followID") Integer followID);
 
     Long insertUsersFollowByID(@Param("vID") Integer vID, @Param("followID") Integer followID);
+
+    Long updateUsersIconByID(@Param("vID") Integer vID, @Param("iconID") String iconID);
+
+    Long updateUsersBackIconByID(@Param("vID") Integer vID, @Param("iconID") String iconID);
+
+    List<BKInteractiveVideo> selectHisVideoByUid(@Param("uID") Integer uID);
+
+    Long insertFavVideoByID(@Param("vID") Integer vID, @Param("videoID") Integer videoID);
 }
