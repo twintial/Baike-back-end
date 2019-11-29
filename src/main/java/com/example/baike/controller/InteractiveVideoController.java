@@ -1,9 +1,7 @@
 package com.example.baike.controller;
 
 import com.example.baike.mapper.InteractiveVideoMapper;
-import com.example.baike.model.BKInteractiveVideo;
-import com.example.baike.model.BKUser;
-import com.example.baike.model.ReadBarrageViewModel;
+import com.example.baike.model.*;
 import com.example.baike.result.Result;
 import com.example.baike.result.ResultFactory;
 import com.example.baike.service.InteractiveVideoService;
@@ -46,5 +44,23 @@ public class InteractiveVideoController {
     @GetMapping("/video/{vID}")
     public Result getVideo(@PathVariable @NotNull Integer vID){
         return interactiveVideoService.findInterVideoInfoByVID(vID);
+    }
+
+    @PostMapping("/history")
+    public Result insertHistory(@RequestBody BKBrowseHistory bkBrowseHistory){
+        return interactiveVideoService.insertBrowseHistory(bkBrowseHistory);
+    }
+
+    @PostMapping("/insert/collection")
+    public Result insertCollection(@RequestBody BKCollection collection){
+        return interactiveVideoService.insertCollection(collection);
+    }
+
+    @DeleteMapping("/delete/collection/{uID}/{vID}")
+    public Result deleteCollection(@PathVariable Integer uID, @PathVariable Integer vID){
+        BKCollection collection = new BKCollection();
+        collection.setUID(uID);
+        collection.setFavVideoID(vID);
+        return interactiveVideoService.deleteCollection(collection);
     }
 }

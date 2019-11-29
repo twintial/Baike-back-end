@@ -123,10 +123,16 @@
         where uID = #{uID}
     </select>
 
-<!--    可能有一样的查询-->
+<!--  查找用户信息byID  可能有一样的查询-->
     <select id="selectUserInfoByID" resultMap="headInfoMap">
         select uID, nickName, icon
         from BK_UserInfo
         where uID = #{uID}
+    </select>
+
+    <select id="isCollect" resultType="Long">
+        select count(*)
+        from BK_Collection
+        where uID = #{uID} and favVideoID = #{vID}
     </select>
 </mapper>

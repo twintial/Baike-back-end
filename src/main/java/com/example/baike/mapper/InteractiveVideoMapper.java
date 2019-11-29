@@ -1,10 +1,6 @@
 package com.example.baike.mapper;
 
-import com.example.baike.model.BKInteractiveVideo;
-import com.example.baike.model.BKNextVideo;
-import com.example.baike.model.BKVideo;
-import com.example.baike.model.BKVideoPlayVideoModel;
-import com.example.baike.model.BKVideoUploadViewModel;
+import com.example.baike.model.*;
 import com.example.baike.state.VideoState;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -29,4 +25,10 @@ public interface InteractiveVideoMapper {
     List<BKNextVideo> selectNextVideoByNowVID(@Param("videoID") Integer videoID);
     // 根据一个视频id找到其URL
     BKVideo selectVideoByVID(@Param("id") Integer videoID);
+    // 历史记录有关
+    Long insertBrowseHistory(BKBrowseHistory bkBrowseHistory);
+    Long updateBrowseHistory(BKBrowseHistory bkBrowseHistory);
+    // 收藏视频和取消收藏
+    Long insertCollection(BKCollection bkCollection);
+    Long deleteCollection(BKCollection bkCollection);
 }

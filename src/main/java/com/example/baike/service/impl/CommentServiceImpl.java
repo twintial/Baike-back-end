@@ -17,7 +17,7 @@ public class CommentServiceImpl implements CommentService {
     public Result insertComment(BKComments comments) {
         Long num = commentMapper.insertComment(comments);
         if (num == 1) {
-            return ResultFactory.buildSuccessResult("send successfully");
+            return ResultFactory.buildSuccessWithMsg("send successfully", comments);
         }
         return ResultFactory.buildFailResult("fail to send");
     }

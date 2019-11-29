@@ -26,4 +26,6 @@ public interface AboutMeMapper {
     Long insertUsersFollowByID(@Param("vID") Integer vID, @Param("followID") Integer followID);
 
     BKUserInfo selectUserInfoByID(@Param("uID") Integer uID);
+
+    Long isCollect(@Param("uID") Integer uID, @Param("vID") Integer vID);
 }

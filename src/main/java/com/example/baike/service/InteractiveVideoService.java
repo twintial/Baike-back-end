@@ -1,8 +1,6 @@
 package com.example.baike.service;
 
-import com.example.baike.model.BKInteractiveVideo;
-import com.example.baike.model.BKVideo;
-import com.example.baike.model.BKVideoUploadViewModel;
+import com.example.baike.model.*;
 import com.example.baike.result.ResourceResult;
 import com.example.baike.result.Result;
 import com.example.baike.state.VideoState;
@@ -19,5 +17,11 @@ public interface InteractiveVideoService {
     Result uploadInteractiveVideo(BKVideoUploadViewModel uploadViewModel, HttpSession session);
     Result getInteractiveVideoPage(String state ,Integer pageNum ,HttpSession session);
     Result deleteInteractiveVideoByID(Integer vID);
+    // 播放界面寻找全部信息
     Result findInterVideoInfoByVID(Integer interVID);
+    // 插入历史记录
+    Result insertBrowseHistory(BKBrowseHistory bkBrowseHistory);
+    // 插入删除收藏夹
+    Result insertCollection(BKCollection collection);
+    Result deleteCollection(BKCollection collection);
 }

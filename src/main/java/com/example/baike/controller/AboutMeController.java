@@ -32,9 +32,12 @@ public class AboutMeController {
         return aboutMeService.getUserFollowerNum(session);
     }
 
-    @GetMapping("/getLoginUserInfo")
-    public Result getLoginUserInfo(HttpSession session){
-        return aboutMeService.getLoginUserInfo(session);
+    @GetMapping("/getLoginUserInfo/{vID}")
+    public Result getLoginUserInfo(@PathVariable("vID") Integer vID, HttpSession session){
+        if (vID == null){
+            return ResultFactory.buildFailResult("can't find video");
+        }
+        return aboutMeService.getLoginUserInfo(vID, session);
     }
 
     @GetMapping("/aboutMe/favVideo/{pageNum}")

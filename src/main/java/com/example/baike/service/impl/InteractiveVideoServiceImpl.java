@@ -155,4 +155,43 @@ public class InteractiveVideoServiceImpl implements InteractiveVideoService {
 
         return ResultFactory.buildSuccessResult(videoPlayVideoModel);
     }
+
+    @Override
+    public Result insertBrowseHistory(BKBrowseHistory bkBrowseHistory) {
+        bkBrowseHistory.setWatchDate(new Date());
+        try {
+            interactiveVideoMapper.insertBrowseHistory(bkBrowseHistory);
+        }catch (Exception e){
+            interactiveVideoMapper.updateBrowseHistory(bkBrowseHistory);
+        }
+        return ResultFactory.buildSuccessWithMsg("success", null);
+    }
+
+    @Override
+    public Result insertCollection(BKCollection collection) {
+        if (collection.getUID() == null){
+            return ResultFactory.buildFailResult("Login please");
+        }else if (collection.getFavVideoID() == null){
+            return ResultFactory.buildFailResult("error");
+        }
+        try{
+            interactiveVideoMapper.insertCollection(collection);
+        }catch (Exception e){
+            return ResultFactory.buildFailResult("already collect this video");
+        }
+        return ResultFactory.buildSuccessWithMsg("success", null);
+    }
+
+    @Override
+    public Result deleteCollection(BKCollection collection) {
+        if (collection.getUID() == null){
+            return ResultFactory.buildFailResult("Login please");
+        }else if (collection.getFavVideoID() == null){
+            return ResultFactory.buildFailResult("error");
+        }
+        interactiveVideoMapper.deleteCollection(collection);
+        return ResultFactory.buildSuccessWithMsg("success", null);
+    }
+
+
 }

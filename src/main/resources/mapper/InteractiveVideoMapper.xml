@@ -69,7 +69,7 @@
         <result property="nickName" column="nickName"/>
     </resultMap>
     <select id="selectCommentsByInterVideoID" resultMap="commentMap">
-        select c.interVideoID, c.content, c.sendTime, uf.icon, uf.nickName
+        select c.interVideoID, c.content, c.sendTime, uf.icon, uf.nickName, uf.uID
         from BK_Comments c  natural join BK_UserInfo uf
         where interVideoID = #{id}
     </select>
@@ -133,4 +133,25 @@
         insert into BK_NextVideo (videoID, nextVideoID, choice)
         values (#{videoID}, #{nextVideoID}, #{choice})
     </insert>
+
+<!--    插入历史记录-->
+    <insert id="insertBrowseHistory">
+        insert into BK_BrowseHistory (uID, watchVideoID, watchDate)
+        values (#{uID}, #{watchVideoID}, #{watchDate})
+    </insert>
+    <update id="updateBrowseHistory">
+        update BK_BrowseHistory
+        set watchDate = #{watchDate}
+        where uID = #{uID} and watchVideoID = #{watchVideoID}
+    </update>
+
+<!--    收藏相关-->
+    <insert id="insertCollection">
+        insert into BK_Collection (uID, favVideoID)
+        values (#{uID}, #{favVideoID})
+    </insert>
+    <delete id="deleteCollection">
+        delete from BK_Collection
+        where uID = #{uID} and favVideoID = #{favVideoID}
+    </delete>
 </mapper>

@@ -30,5 +30,5 @@ public interface AboutMeService {
 
     Result subscribeFollower(Integer oID , HttpSession session);
 
-    Result getLoginUserInfo(HttpSession session);
+    Result getLoginUserInfo(Integer vID, HttpSession session);
 }
