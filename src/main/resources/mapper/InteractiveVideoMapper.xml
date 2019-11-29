@@ -69,8 +69,8 @@
         <result property="nickName" column="nickName"/>
     </resultMap>
     <select id="selectCommentsByInterVideoID" resultMap="commentMap">
-        select c.interVideoID, c.content, c.time, uf.icon, uf.nickName
-        from BK_Comments c  inner join BK_UserInfo uf
+        select c.interVideoID, c.content, c.sendTime, uf.icon, uf.nickName
+        from BK_Comments c  natural join BK_UserInfo uf
         where interVideoID = #{id}
     </select>
 

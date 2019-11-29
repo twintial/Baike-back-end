@@ -122,4 +122,11 @@
         from BK_UserInfo
         where uID = #{uID}
     </select>
+
+<!--    可能有一样的查询-->
+    <select id="selectUserInfoByID" resultMap="headInfoMap">
+        select uID, nickName, icon
+        from BK_UserInfo
+        where uID = #{uID}
+    </select>
 </mapper>

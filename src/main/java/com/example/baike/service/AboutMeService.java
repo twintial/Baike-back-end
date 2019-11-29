@@ -29,4 +29,6 @@ public interface AboutMeService {
     Result getOUsersFollow(Integer oID , Integer pageNum);
 
     Result subscribeFollower(Integer oID , HttpSession session);
+
+    Result getLoginUserInfo(HttpSession session);
 }

@@ -175,4 +175,15 @@ public class AboutMeServiceImpl implements AboutMeService {
         }
         return ResultFactory.buildSuccessResult("Subscribe Success");
     }
+
+    @Override
+    public Result getLoginUserInfo(HttpSession session) {
+        BKUser user = (BKUser) session.getAttribute("user");
+        if (user == null){
+            return ResultFactory.buildFailResult("Please Login First");
+        }
+        BKUserInfo userInfo = aboutMeMapper.selectUserInfoByID(user.getUID());
+        log.info(userInfo.getUID().toString());
+        return ResultFactory.buildSuccessResult(userInfo);
+    }
 }

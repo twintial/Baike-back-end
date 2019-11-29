@@ -32,6 +32,11 @@ public class AboutMeController {
         return aboutMeService.getUserFollowerNum(session);
     }
 
+    @GetMapping("/getLoginUserInfo")
+    public Result getLoginUserInfo(HttpSession session){
+        return aboutMeService.getLoginUserInfo(session);
+    }
+
     @GetMapping("/aboutMe/favVideo/{pageNum}")
     public Result getFavVideoByPage(@PathVariable Integer pageNum, HttpSession session){
         return aboutMeService.getUserFavVideo(pageNum ,session);
