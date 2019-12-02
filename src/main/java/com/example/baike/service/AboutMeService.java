@@ -43,4 +43,8 @@ public interface AboutMeService {
     Result getHisVideos(Integer oID , Integer pageNum);
 
     Result favHisVideo(Integer vID , HttpSession session);
+
+    Result getBrowseHistory(Integer pageNum, HttpSession session);
+
+    Result deleteBrowseHistory(Integer vID, HttpSession session);
 }

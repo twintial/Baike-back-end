@@ -26,6 +26,12 @@
         where uID = #{vID} and favVideoID = #{favID}
     </delete>
 
+    <!--    删除浏览记录-->
+    <delete id="deleteBrowseHistoryByID">
+        delete from BK_BrowseHistory
+        where uID = #{vID} and watchVideoID = #{favID}
+    </delete>
+
     <!--    查找跟随用户的人-->
     <resultMap id="userFollowersMap" type="BKUserInfo">
         <id property="uID" column="uID"/>
@@ -95,6 +101,24 @@
         from BK_InteractiveVideo inner join BK_Collection on BK_InteractiveVideo.interVideoID = BK_Collection.favVideoID
         where BK_Collection.uID = #{uID}
     </select>
+
+    <!--    查找浏览历史-->
+    <resultMap id="browseHistoryMap" type="BKBrowseHistoryViewModel">
+        <id property="interVideoID" column="interVideoID"/>
+        <result property="videoName" column="videoName"/>
+        <result property="introduction" column="introduction"/>
+        <result property="playVolume" column="playVolume"/>
+        <result property="icon" column="icon"/>
+        <result property="watchDate" column="watchDate"/>
+    </resultMap>
+    <select id="selectBrowseHistoryByUid" resultMap="browseHistoryMap">
+        select BK_InteractiveVideo.interVideoID , BK_InteractiveVideo.videoName ,
+        BK_InteractiveVideo.introduction , BK_InteractiveVideo.playVolume ,
+        BK_InteractiveVideo.icon ,  BK_BrowseHistory.watchDate
+        from BK_InteractiveVideo inner join BK_BrowseHistory on BK_InteractiveVideo.interVideoID = BK_BrowseHistory.watchVideoID
+        where BK_BrowseHistory.uID = #{uID}
+    </select>
+
 
     <select id="selectHisVideoByUid" resultMap="userFavVideoMap">
         select *

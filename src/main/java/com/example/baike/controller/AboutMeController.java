@@ -109,4 +109,14 @@ public class AboutMeController {
     public Result getHisVideoByPage(@PathVariable Integer vID , HttpSession session){
         return aboutMeService.favHisVideo(vID , session);
     }
+
+    @GetMapping("/aboutMe/browseHistory/{pageNum}")
+    public Result getBrowseHistoryByPage(@PathVariable Integer pageNum, HttpSession session){
+        return aboutMeService.getBrowseHistory(pageNum ,session);
+    }
+
+    @DeleteMapping("/aboutMe/browseHistory/{interVideoID}")
+    public Result deleteBrowseHistory(@PathVariable Integer interVideoID, HttpSession session){
+        return aboutMeService.deleteUserFavVideo(interVideoID , session);
+    }
 }

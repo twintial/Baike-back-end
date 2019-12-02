@@ -286,4 +286,31 @@ public class AboutMeServiceImpl implements AboutMeService {
         }
         return ResultFactory.buildSuccessResult("Subscribe Success");
     }
+
+    @Override
+    public Result getBrowseHistory(Integer pageNum, HttpSession session){
+        BKUser user = (BKUser) session.getAttribute("user");
+        if (user == null){
+            return ResultFactory.buildFailResult("Please Login First");
+        }
+        PageHelper.startPage(pageNum,10);
+        List<BKInteractiveVideo> videos = aboutMeMapper
+                .selectBrowseHistoryByUid(user.getUID());
+        PageInfo page = new PageInfo(videos);
+        return ResultFactory.buildSuccessWithMsg(String.valueOf(page.getPages()), videos);
+    }
+
+    @Override
+    public Result deleteBrowseHistory(Integer vID, HttpSession session){
+        BKUser user = (BKUser) session.getAttribute("user");
+        if (user == null){
+            return ResultFactory.buildFailResult("Please Login First");
+        }
+        try {
+            aboutMeMapper.deleteBrowseHistoryByID(user.getUID() , vID);
+        }catch (Exception e){
+            return ResultFactory.buildFailResult(e.toString());
+        }
+        return ResultFactory.buildSuccessResult("success");
+    }
 }
