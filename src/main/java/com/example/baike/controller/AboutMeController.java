@@ -126,6 +126,6 @@ public class AboutMeController {
 
     @DeleteMapping("/aboutMe/browseHistory/{interVideoID}")
     public Result deleteBrowseHistory(@PathVariable Integer interVideoID, HttpSession session){
-        return aboutMeService.deleteUserFavVideo(interVideoID , session);
+        return aboutMeService.deleteBrowseHistory(interVideoID , session);
     }
 }

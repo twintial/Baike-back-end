@@ -54,7 +54,7 @@
         <result property="introduction" column="introduction"/>
     </resultMap>
     <select id="selectUserInfoByInterVideoID" resultMap="userInfoMap">
-        select nickName, icon, introduction
+        select uID, nickName, icon, introduction
         from BK_UserInfo
         where uID = #{id}
     </select>
