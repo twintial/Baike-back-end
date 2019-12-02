@@ -17,6 +17,8 @@ public interface InteractiveVideoMapper {
     Long updateInterVideoStartVideo
             (@Param("interVideoID") Integer interVideoID, @Param("initVideoID") Integer initVideoID);
     Long insertNextVideo(BKNextVideo bkNextVideo);
+    Long deleteNextVideoByID(@Param("videoID") Integer videoID);
+
     List<BKInteractiveVideo> selectInterVideosByUserIf(@Param("uID") Integer uID, @Param("state")VideoState state);
     // 通过interVideoID找到播放这个视频的页面所需要的大部分信息
     BKVideoPlayVideoModel findVideoPlayPageInfo(@Param("interVideoID") Integer interVideoID);
@@ -31,4 +33,7 @@ public interface InteractiveVideoMapper {
     // 收藏视频和取消收藏
     Long insertCollection(BKCollection bkCollection);
     Long deleteCollection(BKCollection bkCollection);
+    Integer selectInterVideoStateByID(@Param("interVideoID") Integer interVideoID);
+    Integer selectInitVideoIDByID(@Param("interVideoID") Integer interVideoID);
+    List<BKNextVideo> selectNextVideoByVideoID(@Param("videoID") Integer videoID);
 }
