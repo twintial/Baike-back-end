@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface SearchVideoService {
     BKSearchVideoListViewModel selectByName(String SearchName, String tag, Integer page);
-//    Page<BKInteractiveVideo> pageResult(String SearchName,String tag,Integer page);
+    List<BKInteractiveVideo> category(int tag);
 }

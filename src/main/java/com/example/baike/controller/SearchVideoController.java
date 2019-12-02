@@ -27,12 +27,11 @@ public class SearchVideoController {
     public BKSearchVideoListViewModel Search(@PathVariable("title") String SearchName,
                                              @PathVariable("tag") String tag, @PathVariable("page") Integer page){
         return  searchVideoService.selectByName(SearchName,tag,page);
+    }
 
-//        PageInfo<BKInteractiveVideo> pageInfo = new PageInfo<>(searchVideoService.selectByName(SearchName));
-//        return pageInfo;
-        //PageInfo<BKInteractiveVideo>
-//        List<BKInteractiveVideo>p= searchVideoService.selectByName(SearchName);
-//        return p;
+    @GetMapping("/category/{tag}")
+    List<BKInteractiveVideo> category(@PathVariable("tag") int tag){
+        return searchVideoService.category(tag);
     }
 
 

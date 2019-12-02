@@ -41,6 +41,7 @@ public class LoginController {
                     Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage());
             return ResultFactory.buildFailResult(msg);
         }
+        System.out.println("login");
         return loginService.login(loginInfo.getAccount(), loginInfo.getPassword(), session);
     }
 }

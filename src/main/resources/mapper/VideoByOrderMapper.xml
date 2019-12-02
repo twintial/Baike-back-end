@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.baike.mapper.SearchResultMapper">
+<mapper namespace="com.example.baike.mapper.VideoByOrderMapper">
     <resultMap id="InteractiveVideoMap" type="BKInteractiveVideo">
         <id property="interVideoID" column="interVideoID"/>
         <result property="uID" column="uID"/>
@@ -16,23 +16,19 @@
         <result property="videoName" column="videoName"/>
     </resultMap>
 
-    <select id="selectByName" resultMap="InteractiveVideoMap">
-        select * from BK_InteractiveVideo
-        where 1=1
-        <choose>
-            <when test='SearchName != "4" and SearchName != "0" and SearchName != "1" and SearchName != "2" and SearchName!= "3" '>
-               and videoName  LIKE CONCAT('%',#{SearchName},'%')
-            </when>
-            <otherwise>
-              and   tag=#{SearchName}
-            </otherwise>
-        </choose>
-
-        <if test="tag != 'all' and tag != null ">
-            and tag=#{tag}
-        </if>
-
-        order by playVolume desc
+    <select id="selectByPlayVolume" resultMap="InteractiveVideoMap">
+        select * from ( (select * from Baike.BK_InteractiveVideo order by playVolume  desc) as a) limit 12;
     </select>
 
+    <select id="selectByCollectVolume" resultMap="InteractiveVideoMap">
+        select * from ( (select * from Baike.BK_InteractiveVideo order by collectPoint  desc) as a) limit 12;
+    </select>
+
+    <select id="selectByPraiseVolume" resultMap="InteractiveVideoMap">
+        select * from ( (select * from Baike.BK_InteractiveVideo order by praisePoint  desc) as a) limit 10;
+    </select>
+
+    <select id="selectByTime" resultMap="InteractiveVideoMap">
+        select * from ( (select * from Baike.BK_InteractiveVideo order by uploadTime  desc) as a) limit 12;
+    </select>
 </mapper>
