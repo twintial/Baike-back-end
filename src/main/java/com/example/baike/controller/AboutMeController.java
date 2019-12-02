@@ -100,6 +100,7 @@ public class AboutMeController {
 
     @PostMapping("/aboutMe/upload")
     public Result coverUpload(@RequestParam("avatar") MultipartFile file , @RequestParam("UserID") Integer uID, @RequestParam("MyIcon") String IconID) throws IOException {
+        log.info(uID + "");
         return aboutMeService.setUserIcon(file , uID , IconID);
     }
 

@@ -197,7 +197,9 @@ public class AboutMeServiceImpl implements AboutMeService {
 
     @Override
     public Result setUserIcon(MultipartFile file , Integer UserID , String IconID) throws IOException{
+        log.info("play");
         if (UserID == null){
+            log.info("no user");
             return ResultFactory.buildFailResult("Please Login First");
         }
         if (!file.isEmpty()){
@@ -214,6 +216,7 @@ public class AboutMeServiceImpl implements AboutMeService {
                 file.transferTo(dest);
                 String final_path = UserID + File.separator + uuid + type;
                 try {
+                    log.info("start");
                     aboutMeMapper.updateUsersIconByID(UserID , final_path);
                     if( IconID != "user_default.jpg"){
                         deleteFile(new File( baseURL + "img" + File.separator + "userIcon" + File.separator + IconID));

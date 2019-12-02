@@ -175,11 +175,6 @@
         </where>
     </select>
 
-    <resultMap id="nextVideoMap" type="BKNextVideo">
-        <id property="videoID" column="videoID"/>
-        <result property="nextVideoID" column="nextVideoID"/>
-        <result property="choice" column="choice"/>
-    </resultMap>
     <select id="selectNextVideoByVideoID" resultMap="nextVideoMap">
         select videoID, nextVideoID, choice
         from BK_NextVideo
