@@ -20,7 +20,11 @@ public interface InteractiveVideoMapper {
     Long updateInterVideoStartVideo
             (@Param("interVideoID") Integer interVideoID, @Param("initVideoID") Integer initVideoID);
     Long insertNextVideo(BKNextVideo bkNextVideo);
+    Long deleteNextVideoByID(@Param("videoID") Integer videoID);
 
     List<BKInteractiveVideo> selectInterVideosByUserIf(@Param("uID") Integer uID, @Param("state")VideoState state);
     List<BKVideo> selectVideoByInterVID(@Param("interVideoID") Integer interVideoID);
+    Integer selectInterVideoStateByID(@Param("interVideoID") Integer interVideoID);
+    Integer selectInitVideoIDByID(@Param("interVideoID") Integer interVideoID);
+    List<BKNextVideo> selectNextVideoByVideoID(@Param("videoID") Integer videoID);
 }

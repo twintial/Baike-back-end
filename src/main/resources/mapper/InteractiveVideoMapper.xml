@@ -72,4 +72,44 @@
         insert into BK_NextVideo (videoID, nextVideoID, choice)
         values (#{videoID}, #{nextVideoID}, #{choice})
     </insert>
+
+    <select id="selectInterVideoStateByID" resultType="Integer">
+        select state
+        from BK_InteractiveVideo
+        <where>
+            <if test="interVideoID != null">
+                and interVideoID = #{interVideoID}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectInitVideoIDByID" resultType="Integer">
+        select initVideoID
+        from BK_InteractiveVideo
+        <where>
+            <if test="interVideoID != null">
+                and interVideoID = #{interVideoID}
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="nextVideoMap" type="BKNextVideo">
+        <id property="videoID" column="videoID"/>
+        <result property="nextVideoID" column="nextVideoID"/>
+        <result property="choice" column="choice"/>
+    </resultMap>
+    <select id="selectNextVideoByVideoID" resultMap="nextVideoMap">
+        select videoID, nextVideoID, choice
+        from BK_NextVideo
+        <where>
+            <if test="videoID != null">
+                and videoID = #{videoID}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteNextVideoByID">
+        delete from BK_NextVideo
+        where videoID = #{videoID}
+    </delete>
 </mapper>

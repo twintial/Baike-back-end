@@ -31,6 +31,7 @@ public class EditVideoServiceImpl implements EditVideoService {
     @Override
     public Result getVideoList(Integer InterVID){
 
+        //获取用户之前上传的视频列表，供用户编辑时选择
         List<BKVideo> videos = interactiveVideoMapper.selectVideoByInterVID(InterVID);
         if (videos == null){
             return ResultFactory.buildFailResult("Error!");
@@ -49,20 +50,64 @@ public class EditVideoServiceImpl implements EditVideoService {
     }
 
     public void solveStructure(String structure, Integer interVID){
-
+        //获取JSON字符串
         JSONObject jsonObject = new JSONObject(structure);
+        //获取起始视频
         String startVideoName = jsonObject.getString("video");
+        //获取起始视频ID
         int startVideoID = returnVideoID(startVideoName, interVID);
 
-        System.out.println(startVideoName);
-        System.out.println(startVideoID);
+//        System.out.println(startVideoName);
+//        System.out.println(startVideoID);
+        //更新表数据
         interactiveVideoMapper.updateInterVideoStartVideo(interVID, startVideoID);
-
+        //检测视频是否已被编辑，如果已被编辑，先删除之前的数据
+        deleteStructure(interVID);
+        //向数据库插入视频结构信息
         getRelationship(jsonObject, interVID);
+    }
+
+    public void deleteStructure(Integer interVID){
+
+        //获取interVideo的状态信息，为1则退出。为2则删除数据
+        int state = interactiveVideoMapper.selectInterVideoStateByID(interVID);
+        if (state == 1){
+            return;
+        }
+        else {
+            int initVideoID = interactiveVideoMapper.selectInitVideoIDByID(interVID);
+            List<BKNextVideo> nextVideos = interactiveVideoMapper.selectNextVideoByVideoID(initVideoID);
+            if (nextVideos.size() == 0){
+                return;
+            }
+            for (int i = 0; i < nextVideos.size(); i++){
+                int nextVideoID = nextVideos.get(i).getNextVideoID();
+                deleteRelationship(nextVideoID);
+            }
+            interactiveVideoMapper.deleteNextVideoByID(initVideoID);
+            return;
+        }
+    }
+
+    public void deleteRelationship(Integer nextVideoID){
+        int nowVideoID = nextVideoID;
+        List<BKNextVideo> nextVideos = interactiveVideoMapper.selectNextVideoByVideoID(nowVideoID);
+        if (nextVideos.size() == 0){
+            return;
+        }
+        else {
+            for (int i = 0; i < nextVideos.size(); i++){
+                int next = nextVideos.get(i).getNextVideoID();
+                deleteRelationship(next);
+            }
+            interactiveVideoMapper.deleteNextVideoByID(nowVideoID);
+            return;
+        }
     }
 
     public void getRelationship(JSONObject jsonObject, Integer interVID){
 
+        //递归遍历JSON树，将分支选项和视频插入数据库
         if (!jsonObject.isNull("children")){
             String nowVideoName = jsonObject.getString("video");
             JSONArray jsonArray = jsonObject.getJSONArray("children");
@@ -89,6 +134,7 @@ public class EditVideoServiceImpl implements EditVideoService {
 
     public int returnVideoID(String videoName, Integer interVID){
 
+        //返回JSON中的视频ID信息
         List<BKVideo> videos = interactiveVideoMapper.selectVideoByInterVID(interVID);
         for (int i = 0; i < videos.size(); i++){
             if (videos.get(i).getTitle().equals(videoName)){
