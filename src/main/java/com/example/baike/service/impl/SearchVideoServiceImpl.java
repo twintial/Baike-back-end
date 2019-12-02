@@ -26,6 +26,14 @@ public class SearchVideoServiceImpl implements SearchVideoService {
         return new BKSearchVideoListViewModel(y,num);
     }
 
+
+    public List<BKInteractiveVideo> category(int tag){
+        if(tag==1){return searchResultMapper.selectByName("1","1");}
+        else if(tag==2){return searchResultMapper.selectByName("2","2");}
+        else if(tag==3){return searchResultMapper.selectByName("3","3");}
+        else {return searchResultMapper.selectByName("4","4");}
+    }
+
 //    @Override
 //    public Page<BKInteractiveVideo> pageResult(String SearchName) {
 //        return (Page<BKInteractiveVideo>)searchResultMapper.selectByName(SearchName);
