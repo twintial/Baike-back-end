@@ -35,6 +35,7 @@ public class LoginServiceImpl implements LoginService {
         }
         // md5加密
         String salt = user.getSalt();
+
         String MD5Pwd = MD5Util.getMD5Pwd(psw, salt);
         if (MD5Pwd.equals(user.getPassword())){
             // session存储

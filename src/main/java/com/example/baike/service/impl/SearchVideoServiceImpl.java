@@ -27,11 +27,9 @@ public class SearchVideoServiceImpl implements SearchVideoService {
     }
 
 
-    public List<BKInteractiveVideo> category(int tag){
-        if(tag==1){return searchResultMapper.selectByName("1","1");}
-        else if(tag==2){return searchResultMapper.selectByName("2","2");}
-        else if(tag==3){return searchResultMapper.selectByName("3","3");}
-        else {return searchResultMapper.selectByName("4","4");}
+    public List<BKInteractiveVideo> category(String tag){
+        PageHelper.startPage(1,4);
+        return searchResultMapper.selectByName(tag,tag);
     }
 
 //    @Override

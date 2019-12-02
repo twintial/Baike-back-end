@@ -30,7 +30,7 @@ public class SearchVideoController {
     }
 
     @GetMapping("/category/{tag}")
-    List<BKInteractiveVideo> category(@PathVariable("tag") int tag){
+    List<BKInteractiveVideo> category(@PathVariable("tag") String tag){
         return searchVideoService.category(tag);
     }
 
