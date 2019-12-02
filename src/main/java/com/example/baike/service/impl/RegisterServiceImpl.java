@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RegisterServiceImpl implements RegisterService {
-    private static final String DEFAULT_USER_ICON = "default.jpg";
-    private static final String DEFAULT_BACK_ICON = "default.jpg";
+    private static final String DEFAULT_USER_ICON = "user_default.jpg";
+    private static final String DEFAULT_BACK_ICON = "back_default.jpg";
     @Autowired
     private RegisterMapper registerMapper;
 

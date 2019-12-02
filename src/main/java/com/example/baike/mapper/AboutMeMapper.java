@@ -28,4 +28,16 @@ public interface AboutMeMapper {
     BKUserInfo selectUserInfoByID(@Param("uID") Integer uID);
 
     Long isCollect(@Param("uID") Integer uID, @Param("vID") Integer vID);
+
+    Long updateUsersIconByID(@Param("vID") Integer vID, @Param("iconID") String iconID);
+
+    Long updateUsersBackIconByID(@Param("vID") Integer vID, @Param("iconID") String iconID);
+
+    List<BKInteractiveVideo> selectHisVideoByUid(@Param("uID") Integer uID);
+
+    Long insertFavVideoByID(@Param("vID") Integer vID, @Param("videoID") Integer videoID);
+
+    List<BKInteractiveVideo> selectBrowseHistoryByUid(@Param("uID") Integer uID);
+
+    Long deleteBrowseHistoryByID(@Param("vID") Integer vID, @Param("favID") Integer favID);
 }

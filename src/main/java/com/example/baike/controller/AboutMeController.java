@@ -3,6 +3,7 @@ package com.example.baike.controller;
 
 import com.example.baike.model.BKLoginInfo;
 import com.example.baike.model.BKUserInfo;
+import com.example.baike.result.ResourceResult;
 import com.example.baike.result.Result;
 import com.example.baike.result.ResultFactory;
 import com.example.baike.service.AboutMeService;
@@ -11,10 +12,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 
 import static com.example.baike.constant.ResourcePath.coverImgDirURL;
@@ -95,4 +98,33 @@ public class AboutMeController {
         return aboutMeService.subscribeFollower(oID , session);
     }
 
+    @PostMapping("/aboutMe/upload")
+    public Result coverUpload(@RequestParam("avatar") MultipartFile file , @RequestParam("UserID") Integer uID, @RequestParam("MyIcon") String IconID) throws IOException {
+        return aboutMeService.setUserIcon(file , uID , IconID);
+    }
+
+    @PostMapping("/aboutMe/uploadback")
+    public Result coverBackUpload(@RequestParam("backavatar") MultipartFile file , @RequestParam("BackUserID") Integer uID, @RequestParam("BackMyIcon") String IconID) throws IOException {
+        return aboutMeService.setUserBackIcon(file , uID , IconID);
+    }
+
+    @GetMapping("/aboutHis/hisVideo/{oID}/{pageNum}")
+    public Result getHisVideoByPage(@PathVariable Integer oID , @PathVariable Integer pageNum){
+        return aboutMeService.getHisVideos(oID, pageNum);
+    }
+
+    @GetMapping("/aboutHis/FavHisVideo/{vID}")
+    public Result getHisVideoByPage(@PathVariable Integer vID , HttpSession session){
+        return aboutMeService.favHisVideo(vID , session);
+    }
+
+    @GetMapping("/aboutMe/browseHistory/{pageNum}")
+    public Result getBrowseHistoryByPage(@PathVariable Integer pageNum, HttpSession session){
+        return aboutMeService.getBrowseHistory(pageNum ,session);
+    }
+
+    @DeleteMapping("/aboutMe/browseHistory/{interVideoID}")
+    public Result deleteBrowseHistory(@PathVariable Integer interVideoID, HttpSession session){
+        return aboutMeService.deleteUserFavVideo(interVideoID , session);
+    }
 }

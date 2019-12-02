@@ -5,9 +5,14 @@
         <id property="uID" column="uID"/>
         <result property="nickName" column="nickName"/>
         <result property="iconURL" column="icon"/>
-        <result property="nickName" column="nickName"/>
         <result property="backgroundIconURL" column="backgroundIcon"/>
     </resultMap>
+
+    <!--    收藏视频  -->
+    <insert id="insertFavVideoByID">
+        insert into BK_Collection
+        values (#{vID} , #{videoID})
+    </insert>
 
     <!--    关注用户  -->
      <insert id="insertUsersFollowByID">
@@ -21,6 +26,12 @@
         where uID = #{vID} and favVideoID = #{favID}
     </delete>
 
+    <!--    删除浏览记录-->
+    <delete id="deleteBrowseHistoryByID">
+        delete from BK_BrowseHistory
+        where uID = #{vID} and watchVideoID = #{favID}
+    </delete>
+
     <!--    查找跟随用户的人-->
     <resultMap id="userFollowersMap" type="BKUserInfo">
         <id property="uID" column="uID"/>
@@ -32,6 +43,20 @@
         from BK_UserInfo inner join BK_Favourite on BK_Favourite.uID = BK_UserInfo.uID
         where BK_Favourite.favUserID = #{uID}
     </select>
+
+    <!--    更新用户背景图像-->
+    <update id="updateUsersBackIconByID">
+        update BK_UserInfo
+        set backgroundIcon = #{iconID}
+        where uID = #{vID}
+    </update>
+
+    <!--    更新用户图像-->
+    <update id="updateUsersIconByID">
+        update BK_UserInfo
+        set icon = #{iconID}
+        where uID = #{vID}
+    </update>
 
     <!--    更新用户信息-->
     <update id="updateUserInforByID">
@@ -77,6 +102,30 @@
         where BK_Collection.uID = #{uID}
     </select>
 
+    <!--    查找浏览历史-->
+    <resultMap id="browseHistoryMap" type="BKBrowseHistoryViewModel">
+        <id property="interVideoID" column="interVideoID"/>
+        <result property="videoName" column="videoName"/>
+        <result property="introduction" column="introduction"/>
+        <result property="playVolume" column="playVolume"/>
+        <result property="icon" column="icon"/>
+        <result property="watchDate" column="watchDate"/>
+    </resultMap>
+    <select id="selectBrowseHistoryByUid" resultMap="browseHistoryMap">
+        select BK_InteractiveVideo.interVideoID , BK_InteractiveVideo.videoName ,
+        BK_InteractiveVideo.introduction , BK_InteractiveVideo.playVolume ,
+        BK_InteractiveVideo.icon ,  BK_BrowseHistory.watchDate
+        from BK_InteractiveVideo inner join BK_BrowseHistory on BK_InteractiveVideo.interVideoID = BK_BrowseHistory.watchVideoID
+        where BK_BrowseHistory.uID = #{uID}
+    </select>
+
+
+    <select id="selectHisVideoByUid" resultMap="userFavVideoMap">
+        select *
+        from BK_InteractiveVideo
+        where uID = #{uID} and  state = 2
+    </select>
+
     <!--    删除用户追踪的人-->
     <delete id="deleteUsersFollowByID">
         delete from BK_Favourite
@@ -87,7 +136,7 @@
     <select id="selectUploadVideoNumByuID" resultType="Integer">
         select count(*)
         from BK_InteractiveVideo
-        where uID = #{id} and state = #{2}
+        where uID = #{id} and state = 2
     </select>
 
 <!--    &lt;!&ndash;    查找喜爱视频数量&ndash;&gt;-->
