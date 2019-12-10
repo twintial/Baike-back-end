@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.baike.mapper.AboutMeMapper">
+    <resultMap id="headInfoMap" type="BKUserInfo">
+        <id property="uID" column="uID"/>
+        <result property="nickName" column="nickName"/>
+        <result property="iconURL" column="icon"/>
+        <result property="backgroundIconURL" column="backgroundIcon"/>
+    </resultMap>
+
+    <!--    收藏视频  -->
+    <insert id="insertFavVideoByID">
+        insert into BK_Collection
+        values (#{vID} , #{videoID})
+    </insert>
+
+    <!--    关注用户  -->
+     <insert id="insertUsersFollowByID">
+        insert into BK_Favourite
+        values (#{vID} , #{followID})
+     </insert>
+
+    <!--    删除收藏视频-->
+    <delete id="deleteFavVideoByID">
+        delete from BK_Collection
+        where uID = #{vID} and favVideoID = #{favID}
+    </delete>
+
+    <!--    删除浏览记录-->
+    <delete id="deleteBrowseHistoryByID">
+        delete from BK_BrowseHistory
+        where uID = #{vID} and watchVideoID = #{favID}
+    </delete>
+
+    <!--    查找跟随用户的人-->
+    <resultMap id="userFollowersMap" type="BKUserInfo">
+        <id property="uID" column="uID"/>
+        <result property="nickName" column="nickName"/>
+        <result property="iconURL" column="icon"/>
+    </resultMap>
+    <select id="selectUserFollowersByUid" resultMap="userFollowersMap">
+        select BK_UserInfo.uID , BK_UserInfo.nickName , BK_UserInfo.icon
+        from BK_UserInfo inner join BK_Favourite on BK_Favourite.uID = BK_UserInfo.uID
+        where BK_Favourite.favUserID = #{uID}
+    </select>
+
+    <!--    更新用户背景图像-->
+    <update id="updateUsersBackIconByID">
+        update BK_UserInfo
+        set backgroundIcon = #{iconID}
+        where uID = #{vID}
+    </update>
+
+    <!--    更新用户图像-->
+    <update id="updateUsersIconByID">
+        update BK_UserInfo
+        set icon = #{iconID}
+        where uID = #{vID}
+    </update>
+
+    <!--    更新用户信息-->
+    <update id="updateUserInforByID">
+        update BK_UserInfo
+        set nickName = #{newNickName},
+            introduction = #{newIntro}
+        where uID = #{vID}
+    </update>
+
+    <!--    查找用户跟随的人-->
+    <resultMap id="usersFollowMap" type="BKUserInfo">
+        <id property="uID" column="uID"/>
+        <result property="nickName" column="nickName"/>
+        <result property="iconURL" column="icon"/>
+    </resultMap>
+    <select id="selectUsersFollowByUid" resultMap="usersFollowMap">
+        select u.uID , u.nickName , u.icon
+        from BK_UserInfo u
+        inner join BK_Favourite f
+        on
+        f.favUserID = u.uID
+        where f.uID = #{uID}
+    </select>
+
+    <!--    查找收藏视频-->
+    <resultMap id="userFavVideoMap" type="BKInteractiveVideo">
+        <id property="interVideoID" column="interVideoID"/>
+        <result property="uID" column="uID"/>
+        <result property="videoName" column="videoName"/>
+        <result property="introduction" column="introduction"/>
+        <result property="playVolume" column="playVolume"/>
+        <result property="praisePoint" column="praisePoint"/>
+        <result property="collectPoint" column="collectPoint"/>
+        <result property="tag" column="tag"/>
+        <result property="state" column="state"/>
+        <result property="uploadTime" column="uploadTime" jdbcType="TIMESTAMP"/>
+        <result property="icon" column="icon"/>
+        <result property="initVideoID" column="initVideoID"/>
+    </resultMap>
+    <select id="selectFavVideoByUid" resultMap="userFavVideoMap">
+        select BK_InteractiveVideo.*
+        from BK_InteractiveVideo inner join BK_Collection on BK_InteractiveVideo.interVideoID = BK_Collection.favVideoID
+        where BK_Collection.uID = #{uID}
+    </select>
+
+    <!--    查找浏览历史-->
+    <resultMap id="browseHistoryMap" type="BKBrowseHistoryViewModel">
+        <id property="interVideoID" column="interVideoID"/>
+        <result property="videoName" column="videoName"/>
+        <result property="introduction" column="introduction"/>
+        <result property="playVolume" column="playVolume"/>
+        <result property="icon" column="icon"/>
+        <result property="watchDate" column="watchDate"/>
+    </resultMap>
+    <select id="selectBrowseHistoryByUid" resultMap="browseHistoryMap">
+        select BK_InteractiveVideo.interVideoID , BK_InteractiveVideo.videoName ,
+        BK_InteractiveVideo.introduction , BK_InteractiveVideo.playVolume ,
+        BK_InteractiveVideo.icon ,  BK_BrowseHistory.watchDate
+        from BK_InteractiveVideo inner join BK_BrowseHistory on BK_InteractiveVideo.interVideoID = BK_BrowseHistory.watchVideoID
+        where BK_BrowseHistory.uID = #{uID}
+    </select>
+
+
+    <select id="selectHisVideoByUid" resultMap="userFavVideoMap">
+        select *
+        from BK_InteractiveVideo
+        where uID = #{uID} and  state = 2
+    </select>
+
+    <!--    删除用户追踪的人-->
+    <delete id="deleteUsersFollowByID">
+        delete from BK_Favourite
+        where uID = #{vID} and favUserID = #{followID}
+    </delete>
+
+<!--    查找上传视频数量信息-->
+    <select id="selectUploadVideoNumByuID" resultType="Integer">
+        select count(*)
+        from BK_InteractiveVideo
+        where uID = #{id} and state = 2
+    </select>
+
+<!--    &lt;!&ndash;    查找喜爱视频数量&ndash;&gt;-->
+    <select id="selectFavVideoNumByVID" resultType="Integer">
+        select count(*)
+        from BK_Collection
+        where uID = #{id}
+    </select>
+
+<!--    &lt;!&ndash;查找关注用户的数量&ndash;&gt;-->
+    <select id="selectUserFollowerNumByVID" resultType="Integer">
+        select count(*)
+        from BK_Favourite
+        where favUserID = #{id}
+    </select>
+
+<!--    &lt;!&ndash;查找用户关注的数量&ndash;&gt;-->
+    <select id="selectUsersFollowNumByVID" resultType="Integer">
+        select count(*)
+        from BK_Favourite
+        where uID = #{id}
+    </select>
+
+    <resultMap id="VideoNumSelect" extends="headInfoMap" type="BKHeadInfoViewModel">
+        <association property="uploadVideoNum" fetchType="lazy" select="selectUploadVideoNumByuID" column="{id=uID}"/>
+        <association property="favVideoNum" fetchType="lazy" select="selectFavVideoNumByVID" column="{id=uID}"/>
+        <association property="userFollowerNum" fetchType="lazy" select="selectUserFollowerNumByVID" column="{id=uID}"/>
+        <association property="usersFollowNum" fetchType="lazy" select="selectUsersFollowNumByVID" column="{id=uID}"/>
+    </resultMap>
+    <select id="selectHeadInfoByUid" resultMap="VideoNumSelect">
+        select uID, nickName, icon, nickName, backgroundIcon, introduction
+        from BK_UserInfo
+        where uID = #{uID}
+    </select>
+
+<!--  查找用户信息byID  可能有一样的查询-->
+    <select id="selectUserInfoByID" resultMap="headInfoMap">
+        select uID, nickName, icon
+        from BK_UserInfo
+        where uID = #{uID}
+    </select>
+
+    <select id="isCollect" resultType="Long">
+        select count(*)
+        from BK_Collection
+        where uID = #{uID} and favVideoID = #{vID}
+    </select>
+</mapper>
