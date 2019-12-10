@@ -10,9 +10,13 @@ import java.util.List;
 @Data
 public class BKSearchUserListViewModel implements Serializable {
     private List<BKSearchUser> list;
+    private List<Integer> follow;
+    private List<Integer> video;
     private Integer pageNum;
-    public BKSearchUserListViewModel(List<BKSearchUser> a,Integer b){
+    public BKSearchUserListViewModel(List<BKSearchUser> a,Integer b,List<Integer> c,List<Integer> d){
         list=a;
         pageNum=b;
+        follow=c;
+        video=d;
     }
 }

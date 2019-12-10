@@ -13,14 +13,4 @@
         where nickName  LIKE CONCAT('%',#{SearchName},'%') and state=1 order by introduction desc
     </select>
 
-    <select id="followByID" resultType="Integer">
-        select count(*) from BK_Favourite
-        where uID=#{ID}
-    </select>
-
-    <select id="videoByID" resultType="Integer">
-        select count(*) from BK_InteractiveVideo
-        where uID=#{ID}
-    </select>
-
 </mapper>

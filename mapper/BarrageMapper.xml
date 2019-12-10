@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.baike.mapper.BarrageMapper">
+    <insert id="insertBarrage">
+        insert into BK_Barrage(uID, videoID, content, sendTime, videoTime, color, bType)
+        values (#{uID}, #{videoID}, #{content}, #{sendTime}, #{videoTime}, #{color}, #{bType})
+    </insert>
+    <resultMap id="barrageMap" type="ReadBarrageViewModel">
+        <id property="uID" column="uID"/>
+        <result property="content" column="content"/>
+        <result property="time" column="videoTime"/>
+        <result property="color" column="color"/>
+        <result property="bType" column="bType"/>
+    </resultMap>
+    <select id="selectAllBarragesByID" resultMap="barrageMap">
+        select uID, content, videoTime, color, bType
+        from BK_Barrage
+        where videoID = #{vID}
+    </select>
+</mapper>

@@ -12,4 +12,6 @@ import java.util.List;
 @Mapper
 public interface SearchUserMapper {
     List<BKSearchUser> selectByName(@Param("SearchName") String SearchName);
+    Integer  followByID(@Param("ID") Integer ID);
+    Integer  videoByID(@Param("ID") Integer ID);
 }
