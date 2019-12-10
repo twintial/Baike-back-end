@@ -218,7 +218,7 @@ public class AboutMeServiceImpl implements AboutMeService {
                 try {
                     log.info("start");
                     aboutMeMapper.updateUsersIconByID(UserID , final_path);
-                    if( IconID != "user_default.jpg"){
+                    if(!IconID.equals("user_default.jpg")){
                         deleteFile(new File( baseURL + "img" + File.separator + "userIcon" + File.separator + IconID));
                     }
                 }catch (Exception e){
@@ -266,7 +266,7 @@ public class AboutMeServiceImpl implements AboutMeService {
                 try {
                     log.info("insert");
                     aboutMeMapper.updateUsersBackIconByID(UserID , final_path);
-                    if( IconID != "back_default.jpg"){
+                    if(!IconID.equals("back_default.jpg")){
                         deleteFile(new File( baseURL + "img" + File.separator + "userIcon" + File.separator + IconID));
                     }
                 }catch (Exception e){
