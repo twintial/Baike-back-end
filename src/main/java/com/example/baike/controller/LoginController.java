@@ -1,22 +1,15 @@
 package com.example.baike.controller;
 
-import com.example.baike.MD5Util;
 import com.example.baike.model.BKLoginInfo;
-import com.example.baike.model.BKUser;
 import com.example.baike.result.Result;
 import com.example.baike.result.ResultFactory;
 import com.example.baike.service.LoginService;
-import com.example.baike.service.impl.LoginServiceImpl;
-import com.example.baike.state.UserState;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
-import javax.swing.plaf.nimbus.State;
 import javax.validation.Valid;
 import java.util.Objects;
 

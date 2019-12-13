@@ -18,7 +18,7 @@ public class UploadConfig {
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
         //  单个数据大小
-        factory.setMaxFileSize(DataSize.parse(maxFileSize)); // KB,MB
+        factory.setMaxFileSize(DataSize.parse(maxFileSize));
         /// 总上传数据大小
         factory.setMaxRequestSize(DataSize.parse(maxRequestSize));
         return factory.createMultipartConfig();

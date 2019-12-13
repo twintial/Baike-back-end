@@ -1,4 +1,4 @@
-package com.example.baike;
+package com.example.baike.util;
 
 import com.example.baike.model.BKUser;
 import org.apache.catalina.User;

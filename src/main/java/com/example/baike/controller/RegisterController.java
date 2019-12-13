@@ -1,13 +1,10 @@
 package com.example.baike.controller;
 
-import com.example.baike.MD5Util;
 import com.example.baike.model.BKRegisterInfo;
-import com.example.baike.model.BKUser;
 import com.example.baike.result.Result;
 import com.example.baike.result.ResultFactory;
 import com.example.baike.service.RegisterService;
 import com.example.baike.service.SelectionHelperService;
-import com.example.baike.state.UserState;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;

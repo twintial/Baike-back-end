@@ -1,6 +1,6 @@
 package com.example.baike.service.impl;
 
-import com.example.baike.MD5Util;
+import com.example.baike.util.MD5Util;
 import com.example.baike.mapper.LoginMapper;
 import com.example.baike.model.BKUser;
 import com.example.baike.result.Result;

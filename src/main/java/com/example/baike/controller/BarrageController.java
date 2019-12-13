@@ -20,11 +20,6 @@ public class BarrageController {
     BarrageService barrageService;
     @GetMapping("/danmaku/v2/{vID}")
     public Result read(@PathVariable Integer vID){
-        Object[][] a = {
-                {0,1,16777215,"618c713c","键盘妹子挺好看？"},
-                {0,2,16777215,"6b2884ac","Goose house炒鸡棒！！！  银之匙种草他们组合"}
-        };
-
         Object[][] barrages = barrageService.selectAllBarragesByID(vID);
         return ResultFactory.buildCustomResult(1, "success", barrages);
     }

@@ -40,7 +40,7 @@ public class VideoUploadController {
     }
 
     @PostMapping("/cover/upload")
-    public ResourceResult coverUpload(@RequestParam("avatar") MultipartFile file) throws IOException {
+    public ResourceResult coverUpload(@RequestParam("videoCover") MultipartFile file) throws IOException {
         return interactiveVideoService.createTemp(file);
     }
 
