@@ -4,6 +4,7 @@ package com.example.baike.controller;
 
 import com.example.baike.model.BKInteractiveVideo;
 import com.example.baike.model.BKSearchVideoListViewModel;
+import com.example.baike.model.InterVideoViewModel;
 import com.example.baike.service.SearchVideoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -29,9 +30,9 @@ public class SearchVideoController {
         return  searchVideoService.selectByName(SearchName,tag,page);
     }
 
-    @GetMapping("/category/{tag}")
-    public List<BKInteractiveVideo> category(@PathVariable("tag") String tag){
-        return searchVideoService.category(tag);
+    @GetMapping("/category/{tag}/{size}")
+    public List<InterVideoViewModel> category(@PathVariable("tag") String tag, @PathVariable("size") int pageSize){
+        return searchVideoService.category(tag, pageSize);
     }
 
 

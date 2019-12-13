@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.baike.mapper.VideoByOrderMapper">
-    <resultMap id="InteractiveVideoMap" type="BKInteractiveVideo">
+    <resultMap id="InteractiveVideoMap" type="InterVideoViewModel">
         <id property="interVideoID" column="interVideoID"/>
+        <result property="nickName" column="nickName"/>
         <result property="uID" column="uID"/>
         <result property="introduction" column="introduction"/>
         <result property="playVolume" column="playVolume"/>
@@ -17,18 +18,26 @@
     </resultMap>
 
     <select id="selectByPlayVolume" resultMap="InteractiveVideoMap">
-        select * from ( (select * from Baike.BK_InteractiveVideo order by playVolume  desc) as a) limit 12;
+        select v.interVideoID, uf.nickName, v.uID, v.introduction, playVolume, praisePoint, collectPoint, tag, v.state, uploadTime, initVideoID, v.icon, videoName
+        from BK_InteractiveVideo v join BK_UserInfo uf on v.uID = uf.uID
+        where v.state = 2 order by playVolume  desc limit 12
     </select>
 
     <select id="selectByCollectVolume" resultMap="InteractiveVideoMap">
-        select * from ( (select * from Baike.BK_InteractiveVideo order by collectPoint  desc) as a) limit 12;
+        select v.interVideoID, uf.nickName, v.uID, v.introduction, playVolume, praisePoint, collectPoint, tag, v.state, uploadTime, initVideoID, v.icon, videoName
+        from BK_InteractiveVideo v join BK_UserInfo uf on v.uID = uf.uID
+        where v.state = 2 order by collectPoint  desc limit 12
     </select>
 
     <select id="selectByPraiseVolume" resultMap="InteractiveVideoMap">
-        select * from ( (select * from Baike.BK_InteractiveVideo order by praisePoint  desc) as a) limit 10;
+        select v.interVideoID, uf.nickName, v.uID, v.introduction, playVolume, praisePoint, collectPoint, tag, v.state, uploadTime, initVideoID, v.icon, videoName
+        from BK_InteractiveVideo v join BK_UserInfo uf on v.uID = uf.uID
+        where v.state = 2 order by praisePoint  desc limit 12
     </select>
 
     <select id="selectByTime" resultMap="InteractiveVideoMap">
-        select * from ( (select * from Baike.BK_InteractiveVideo order by uploadTime  desc) as a) limit 12;
+        select v.interVideoID, uf.nickName, v.uID, v.introduction, playVolume, praisePoint, collectPoint, tag, v.state, uploadTime, initVideoID, v.icon, videoName
+        from BK_InteractiveVideo v join BK_UserInfo uf on v.uID = uf.uID
+        where v.state = 2 order by uploadTime  desc limit 12
     </select>
 </mapper>

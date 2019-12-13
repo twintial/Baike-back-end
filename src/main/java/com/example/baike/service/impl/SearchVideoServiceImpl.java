@@ -4,6 +4,7 @@ import com.example.baike.mapper.LoginMapper;
 import com.example.baike.mapper.SearchResultMapper;
 import com.example.baike.model.BKInteractiveVideo;
 import com.example.baike.model.BKSearchVideoListViewModel;
+import com.example.baike.model.InterVideoViewModel;
 import com.example.baike.service.SearchVideoService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -20,15 +21,15 @@ public class SearchVideoServiceImpl implements SearchVideoService {
 
     public BKSearchVideoListViewModel selectByName(String SearchName, String tag, Integer page){
         PageHelper.startPage(page,9);
-        List<BKInteractiveVideo> y=searchResultMapper.selectByName(SearchName,tag);
+        List<InterVideoViewModel> y=searchResultMapper.selectByName(SearchName,tag);
         Integer num= Math.toIntExact(((Page) y).getTotal());
         System.out.println(num);
         return new BKSearchVideoListViewModel(y,num);
     }
 
 
-    public List<BKInteractiveVideo> category(String tag){
-        PageHelper.startPage(1,4);
+    public List<InterVideoViewModel> category(String tag, int pageSize){
+        PageHelper.startPage(1,pageSize);
         return searchResultMapper.selectByName(tag,tag);
     }
 

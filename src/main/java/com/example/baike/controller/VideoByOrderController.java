@@ -2,6 +2,7 @@ package com.example.baike.controller;
 
 import com.example.baike.mapper.SearchResultMapper;
 import com.example.baike.model.BKInteractiveVideo;
+import com.example.baike.model.InterVideoViewModel;
 import com.example.baike.service.VideoByOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +22,16 @@ public class VideoByOrderController {
     VideoByOrderService videoByOrderService;
     @Autowired
     SearchResultMapper searchResultMapper;
-    
+
     @GetMapping("/playVolume")
-    List<BKInteractiveVideo> selectByPlayVolume(){
+    List<InterVideoViewModel> selectByPlayVolume(){
         return videoByOrderService.selectByPlayVolume();
     }
 
 
 
     @GetMapping("/time")
-    List<BKInteractiveVideo> selectByTime(){
+    List<InterVideoViewModel> selectByTime(){
         return videoByOrderService.selectByTime();
     }
 

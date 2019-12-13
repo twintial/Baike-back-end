@@ -9,9 +9,9 @@ import java.util.List;
 @EqualsAndHashCode()
 @Data
 public class BKSearchVideoListViewModel implements Serializable {
-    private List<BKInteractiveVideo> list;
+    private List<InterVideoViewModel> list;
     private Integer pageNum;
-    public BKSearchVideoListViewModel(List<BKInteractiveVideo> a,Integer b){
+    public BKSearchVideoListViewModel(List<InterVideoViewModel> a,Integer b){
         list=a;
         pageNum=b;
     }

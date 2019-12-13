@@ -2,6 +2,7 @@ package com.example.baike.service.impl;
 
 import com.example.baike.mapper.VideoByOrderMapper;
 import com.example.baike.model.BKInteractiveVideo;
+import com.example.baike.model.InterVideoViewModel;
 import com.example.baike.service.VideoByOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,22 +14,22 @@ public class VideoByOrderServiceImpl implements VideoByOrderService {
     VideoByOrderMapper videoByOrderMapper;
 
     @Override
-    public List<BKInteractiveVideo> selectByPlayVolume() {
+    public List<InterVideoViewModel> selectByPlayVolume() {
         return videoByOrderMapper.selectByPlayVolume();
     }
 
     @Override
-    public List<BKInteractiveVideo> selectByCollectVolume() {
+    public List<InterVideoViewModel> selectByCollectVolume() {
         return videoByOrderMapper.selectByCollectVolume();
     }
 
     @Override
-    public List<BKInteractiveVideo> selectByPraiseVolume() {
+    public List<InterVideoViewModel> selectByPraiseVolume() {
         return videoByOrderMapper.selectByPraiseVolume();
     }
 
     @Override
-    public List<BKInteractiveVideo> selectByTime() {
+    public List<InterVideoViewModel> selectByTime() {
         return videoByOrderMapper.selectByTime();
     }
 }
