@@ -21,4 +21,9 @@ public class SearchUserController {
     public BKSearchUserListViewModel Search(@PathVariable("title") String SearchName,@PathVariable("page") Integer page){
         return  searchUserService.selectByName(SearchName,page);
     }
+    //当搜索名为空时
+    @GetMapping("/SearchUser/{page}")
+    public BKSearchUserListViewModel Search2(@PathVariable("page") Integer page){
+        return  searchUserService.selectByName("",page);
+    }
 }

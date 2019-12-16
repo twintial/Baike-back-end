@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.baike.mapper.AdminLoginMapper">
+    <resultMap id="adminMap" type="BKAdmin">
+        <id property="account" column="password"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <select id="Detection" resultMap="adminMap">
+        select account,password from BK_Admin
+        where account = #{account} and password=#{password}
+    </select>
+</mapper>
