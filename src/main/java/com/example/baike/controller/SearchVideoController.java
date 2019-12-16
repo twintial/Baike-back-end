@@ -5,8 +5,6 @@ package com.example.baike.controller;
 import com.example.baike.model.BKInteractiveVideo;
 import com.example.baike.model.BKSearchVideoListViewModel;
 import com.example.baike.service.SearchVideoService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,6 +25,11 @@ public class SearchVideoController {
     public BKSearchVideoListViewModel Search(@PathVariable("title") String SearchName,
                                              @PathVariable("tag") String tag, @PathVariable("page") Integer page){
         return  searchVideoService.selectByName(SearchName,tag,page);
+    }
+    //当搜索名为空时
+    @GetMapping("/SearchVideo/{tag}/{page}")
+    public BKSearchVideoListViewModel Search2(@PathVariable("tag") String tag, @PathVariable("page") Integer page){
+        return  searchVideoService.selectByName("",tag,page);
     }
 
     @GetMapping("/category/{tag}")

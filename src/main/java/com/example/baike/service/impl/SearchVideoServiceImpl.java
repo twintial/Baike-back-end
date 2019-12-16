@@ -1,6 +1,5 @@
 package com.example.baike.service.impl;
 
-import com.example.baike.mapper.LoginMapper;
 import com.example.baike.mapper.SearchResultMapper;
 import com.example.baike.model.BKInteractiveVideo;
 import com.example.baike.model.BKSearchVideoListViewModel;
@@ -32,8 +31,4 @@ public class SearchVideoServiceImpl implements SearchVideoService {
         return searchResultMapper.selectByName(tag,tag);
     }
 
-//    @Override
-//    public Page<BKInteractiveVideo> pageResult(String SearchName) {
-//        return (Page<BKInteractiveVideo>)searchResultMapper.selectByName(SearchName);
-//    }
 }

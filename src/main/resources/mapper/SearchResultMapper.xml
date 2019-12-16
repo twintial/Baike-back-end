@@ -18,7 +18,7 @@
 
     <select id="selectByName" resultMap="InteractiveVideoMap">
         select * from BK_InteractiveVideo
-        where 1=1
+        where state=2
         <choose>
             <when test='SearchName != "Adventure" and SearchName != "Mystery" and SearchName != "Thriller" and SearchName != "Romance" and SearchName!= "Comedy" and SearchName!= "Time-travel" '>
                and videoName  LIKE CONCAT('%',#{SearchName},'%')

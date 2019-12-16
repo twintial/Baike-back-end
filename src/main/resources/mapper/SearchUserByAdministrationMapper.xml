@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.baike.mapper.SearchUserByAdministrationMapper">
+    <resultMap id="SearchUserByMap" type="BKUserState">
+        <id property="uID" column="uID"/>
+        <result property="nickName" column="nickName"/>
+        <result property="iconURL" column="icon"/>
+        <result property="introduction" column="introduction"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+    <select id="selectByName" resultMap="SearchUserByMap">
+        select uID,nickName,icon,introduction,state from BK_UserInfo
+        where state=#{state}
+        <if test='SearchName != "" '>
+         and nickName  LIKE CONCAT('%',#{SearchName},'%')
+        </if>
+         order by nickName
+    </select>
+
+    <select id="selectByTime" resultMap="SearchUserByMap">
+        select uID,nickName,icon,introduction,state from BK_UserInfo
+        where state=#{state}
+        <if test='SearchName != "" '>
+            and nickName  LIKE CONCAT('%',#{SearchName},'%')
+        </if>
+         order by uID
+    </select>
+
+</mapper>

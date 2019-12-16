@@ -17,18 +17,18 @@
     </resultMap>
 
     <select id="selectByPlayVolume" resultMap="InteractiveVideoMap">
-        select * from ( (select * from Baike.BK_InteractiveVideo order by playVolume  desc) as a) limit 12;
+        select * from ( (select * from Baike.BK_InteractiveVideo where state=2 order by playVolume  desc) as a) limit 12;
     </select>
 
     <select id="selectByCollectVolume" resultMap="InteractiveVideoMap">
-        select * from ( (select * from Baike.BK_InteractiveVideo order by collectPoint  desc) as a) limit 12;
+        select * from ( (select * from Baike.BK_InteractiveVideo where state=2 order by collectPoint  desc) as a) limit 12;
     </select>
 
     <select id="selectByPraiseVolume" resultMap="InteractiveVideoMap">
-        select * from ( (select * from Baike.BK_InteractiveVideo order by praisePoint  desc) as a) limit 10;
+        select * from ( (select * from Baike.BK_InteractiveVideo where state=2 order by praisePoint  desc) as a) limit 10;
     </select>
 
     <select id="selectByTime" resultMap="InteractiveVideoMap">
-        select * from ( (select * from Baike.BK_InteractiveVideo order by uploadTime  desc) as a) limit 12;
+        select * from ( (select * from Baike.BK_InteractiveVideo where state=2 order by uploadTime  desc) as a) limit 12;
     </select>
 </mapper>

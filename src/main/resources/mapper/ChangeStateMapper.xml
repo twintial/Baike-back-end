@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.baike.mapper.ChangeStateMapper">
+    <update id="changeUser">
+        UPDATE BK_UserInfo SET state = 1-state WHERE uID = #{uID}
+    </update>
+
+    <update id="changeVideo">
+        UPDATE BK_InteractiveVideo SET state = 2-state WHERE interVideoID = #{interVideoID}
+    </update>
+</mapper>
