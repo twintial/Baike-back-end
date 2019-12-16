@@ -3,6 +3,7 @@ package com.example.baike.service.impl;
 import com.example.baike.mapper.SearchVideoByAdministrationMapper;
 import com.example.baike.model.BKInteractiveVideo;
 import com.example.baike.model.BKSearchVideoListViewModel;
+import com.example.baike.model.InterVideoViewModel;
 import com.example.baike.service.SearchVideoByAdministrationService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -18,7 +19,7 @@ public class SearchVideoByAdministrationServiceImpl implements SearchVideoByAdmi
 
     public BKSearchVideoListViewModel selectByName(String SearchName, Integer page,String SearchStyle,String tag){
         PageHelper.startPage(page,9);
-        List<BKInteractiveVideo> y;
+        List<InterVideoViewModel> y;
         Integer state=0;
         if(tag.equals("NORMAL")) state=2;
         switch(SearchStyle) {
