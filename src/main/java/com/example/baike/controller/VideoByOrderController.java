@@ -29,7 +29,6 @@ public class VideoByOrderController {
     }
 
 
-
     @GetMapping("/time")
     List<InterVideoViewModel> selectByTime(){
         return videoByOrderService.selectByTime();

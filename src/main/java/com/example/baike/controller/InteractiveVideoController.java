@@ -1,11 +1,9 @@
 package com.example.baike.controller;
 
-import com.example.baike.mapper.InteractiveVideoMapper;
 import com.example.baike.model.*;
 import com.example.baike.result.Result;
 import com.example.baike.result.ResultFactory;
 import com.example.baike.service.InteractiveVideoService;
-import com.example.baike.state.VideoState;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
-import static com.example.baike.state.VideoState.*;
 import static com.example.baike.constant.ResourcePath.*;
 
 @Slf4j

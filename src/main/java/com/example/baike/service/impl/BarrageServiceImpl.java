@@ -36,7 +36,7 @@ public class BarrageServiceImpl implements BarrageService {
         barrage.setContent(barrageViewModel.getText());
         barrage.setVideoTime(barrageViewModel.getTime());
         barrage.setSendTime(new Date());
-        barrage.setColor(nRGB);
+        barrage.setColor(barrageViewModel.getColor());
         barrage.setBType(BarrageMap.typeMap.get(barrageViewModel.getType()));
         barrage.setVideoID(barrageViewModel.getPlayer());
         barrageMapper.insertBarrage(barrage);

@@ -23,7 +23,7 @@ public class ReadBarrageViewModel implements Serializable {
     /**
      * 弹幕颜色
      */
-    private Integer color;
+    private String color;
 
     /**
      * 用户id(之后可能改成用户名)

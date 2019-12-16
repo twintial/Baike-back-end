@@ -12,7 +12,7 @@
         select * from BK_User
         where account = #{account}
     </select>
-    <select id="selectStateByUID" resultType="com.example.baike.state.UserState">
+    <select id="selectStateByUID" resultType="com.example.baike.constant.state.UserState">
         select state from BK_UserInfo
         where uID = #{uID}
     </select>

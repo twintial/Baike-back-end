@@ -54,7 +54,7 @@ class BaikeApplicationTests {
 
 	@Test
 	@Transactional
-	void registertest() throws Exception {
+	void registerTest() throws Exception {
 		mvc = MockMvcBuilders.standaloneSetup(registerController).build();
 		String json = "{\"account\":\"555@qq.com\", \"password\":\"abcd1234\", \"nickName\":\"me\"}";
 		request = post("/api/register")

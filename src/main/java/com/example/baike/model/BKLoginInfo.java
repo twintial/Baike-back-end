@@ -12,13 +12,13 @@ public class BKLoginInfo implements Serializable {
     /**
      * 用户账号（邮箱）
      */
-    @Email(message = "用户账号必须为邮箱名")
-    @NotBlank(message = "用户账号不能为空")
+    @Email(message = "account must be a e-mail address")
+    @NotBlank(message = "account can't be empty")
     private String account;
 
     /**
      * 用户密码
      */
-    @NotBlank(message = "用户密码不能为空")
+    @NotBlank(message = "password can't be empty")
     private String password;
 }

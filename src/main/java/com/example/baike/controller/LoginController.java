@@ -30,7 +30,7 @@ public class LoginController {
     @PostMapping("/login")
     public Result Login(@Valid @RequestBody BKLoginInfo loginInfo, BindingResult bindingResult, HttpSession session){
         if (bindingResult.hasErrors()){
-            String msg = String.format("登陆失败，%s。",
+            String msg = String.format("login fail，%s。",
                     Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage());
             return ResultFactory.buildFailResult(msg);
         }

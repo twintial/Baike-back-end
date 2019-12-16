@@ -12,7 +12,7 @@ public class BKUser extends BKLoginInfo {
     /**
      * 用户的唯一id
      */
-    @NotNull(message = "用户唯一id不能为空")
+    @NotNull(message = "id can't be empty")
     private Integer uID;
 
     /**

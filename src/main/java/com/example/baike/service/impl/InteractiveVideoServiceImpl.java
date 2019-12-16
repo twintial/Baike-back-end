@@ -6,7 +6,7 @@ import com.example.baike.result.ResourceResult;
 import com.example.baike.result.Result;
 import com.example.baike.result.ResultFactory;
 import com.example.baike.service.InteractiveVideoService;
-import com.example.baike.state.VideoState;
+import com.example.baike.constant.state.VideoState;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import static com.example.baike.state.VideoState.*;
+import static com.example.baike.constant.state.VideoState.*;
 import static com.example.baike.constant.ResourcePath.*;
 
 @Slf4j

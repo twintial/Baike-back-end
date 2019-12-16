@@ -35,8 +35,8 @@
     </settings>
     <typeHandlers>
         <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
-                     javaType="com.example.baike.state.UserState"/>
+                     javaType="com.example.baike.constant.state.UserState"/>
         <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
-                     javaType="com.example.baike.state.VideoState"/>
+                     javaType="com.example.baike.constant.state.VideoState"/>
     </typeHandlers>
 </configuration>

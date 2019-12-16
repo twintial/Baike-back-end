@@ -1,7 +1,7 @@
 package com.example.baike.mapper;
 
 import com.example.baike.model.*;
-import com.example.baike.state.VideoState;
+import com.example.baike.constant.state.VideoState;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

@@ -3,13 +3,11 @@ package com.example.baike.service;
 import com.example.baike.model.*;
 import com.example.baike.result.ResourceResult;
 import com.example.baike.result.Result;
-import com.example.baike.state.VideoState;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public interface InteractiveVideoService {
     ResourceResult createTemp(MultipartFile file) throws IOException;

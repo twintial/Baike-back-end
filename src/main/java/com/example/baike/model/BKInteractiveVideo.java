@@ -1,6 +1,6 @@
 package com.example.baike.model;
 
-import com.example.baike.state.VideoState;
+import com.example.baike.constant.state.VideoState;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;

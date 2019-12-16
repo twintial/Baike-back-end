@@ -25,15 +25,15 @@ public class RegisterController {
     @PostMapping("/register")
     public Result register(@Valid @RequestBody BKRegisterInfo registerInfo, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
-            String msg = String.format("注册失败，%s。",
+            String msg = String.format("register fail，%s。",
                     Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage());
             return ResultFactory.buildFailResult(msg);
         }
         if (selectionHelperService.selectByNickName(registerInfo.getNickName()) != null){
-            return ResultFactory.buildFailResult("用户名已存在");
+            return ResultFactory.buildFailResult("username have been used");
         }
         if (selectionHelperService.selectByAccount(registerInfo.getAccount()) != null){
-            return ResultFactory.buildFailResult("邮箱已存在");
+            return ResultFactory.buildFailResult("e-mail address have been used");
         }
         return registerService.register(registerInfo.getAccount(),
                 registerInfo.getPassword(), registerInfo.getNickName());

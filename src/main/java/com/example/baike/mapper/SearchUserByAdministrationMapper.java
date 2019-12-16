@@ -1,8 +1,6 @@
 package com.example.baike.mapper;
 
-import com.example.baike.model.BKSearchUser;
 import com.example.baike.model.BKUserState;
-import com.example.baike.state.UserState;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

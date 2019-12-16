@@ -1,4 +1,4 @@
-package com.example.baike.state;
+package com.example.baike.constant.state;
 
 public enum VideoState {
     BANNED,

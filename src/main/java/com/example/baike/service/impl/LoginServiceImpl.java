@@ -6,7 +6,7 @@ import com.example.baike.model.BKUser;
 import com.example.baike.result.Result;
 import com.example.baike.result.ResultFactory;
 import com.example.baike.service.LoginService;
-import com.example.baike.state.UserState;
+import com.example.baike.constant.state.UserState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public Result login(String account, String psw, HttpSession session) {
         if (session.getAttribute("user") != null){
-            return ResultFactory.buildFailResult("已经登陆了啦");
+            return ResultFactory.buildFailResult("already login");
         }
         BKUser user;
         UserState state;
@@ -28,10 +28,10 @@ public class LoginServiceImpl implements LoginService {
             user = loginMapper.selectByAccount(account);
             state = loginMapper.selectStateByUID(user.getUID());
         }catch (Exception e){
-            return ResultFactory.buildFailResult("邮箱不存在");
+            return ResultFactory.buildFailResult("e-mail address don't exist");
         }
         if (state.equals(UserState.BANNED)){
-            return ResultFactory.buildFailResult("用户被封禁");
+            return ResultFactory.buildFailResult("you have been banned, please contact administrator first");
         }
         // md5加密
         String salt = user.getSalt();
@@ -42,6 +42,6 @@ public class LoginServiceImpl implements LoginService {
             session.setAttribute("user", user);
             return ResultFactory.buildSuccessResult(user.getAccount());
         }
-        return ResultFactory.buildFailResult("密码错误");
+        return ResultFactory.buildFailResult("error password");
     }
 }

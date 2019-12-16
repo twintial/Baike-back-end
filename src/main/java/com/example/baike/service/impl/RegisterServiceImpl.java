@@ -7,7 +7,7 @@ import com.example.baike.model.BKUserInfo;
 import com.example.baike.result.Result;
 import com.example.baike.result.ResultFactory;
 import com.example.baike.service.RegisterService;
-import com.example.baike.state.UserState;
+import com.example.baike.constant.state.UserState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +34,7 @@ public class RegisterServiceImpl implements RegisterService {
             return ResultFactory.buildFailResult("邮箱已存在, 且用户回滚");
         }
         if (user.getUID() == null){
-            return ResultFactory.buildFailResult("注册失败");
+            return ResultFactory.buildFailResult("register fail");
         }
         // 添加用户信息
         BKUserInfo userInfo = new BKUserInfo();
@@ -50,7 +50,7 @@ public class RegisterServiceImpl implements RegisterService {
             registerMapper.rollBackUser(user);
             return ResultFactory.buildFailResult("用户名已存在, 且用户回滚");
         }
-        return ResultFactory.buildSuccessResult("用户注册成功");
+        return ResultFactory.buildSuccessResult("register success");
     }
 
 }

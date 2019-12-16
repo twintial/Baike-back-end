@@ -1,6 +1,6 @@
 package com.example.baike.model;
 
-import com.example.baike.state.UserState;
+import com.example.baike.constant.state.UserState;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -13,13 +13,13 @@ public class BKUserInfo implements Serializable {
     /**
      * 用户唯一ID
      */
-    @NotNull(message = "唯一ID不可为空")
+    @NotNull(message = "id can't be empty")
     private Integer uID;
 
     /**
      * 用户昵称
      */
-    @NotBlank(message = "用户名不可为空")
+    @NotBlank(message = "nickname can't be empty")
     private String nickName;
 
     /**

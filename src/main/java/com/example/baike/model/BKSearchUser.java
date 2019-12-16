@@ -11,19 +11,19 @@ public class BKSearchUser implements Serializable {
     /**
      * 用户唯一ID
      */
-    @NotNull(message = "唯一ID不可为空")
+    @NotNull(message = "ID can't be empty")
     private Integer uID;
 
     /**
      * 用户昵称
      */
-    @NotBlank(message = "用户名不可为空")
+    @NotBlank(message = "nickname can't be empty")
     private String nickName;
 
     /**
      * 用户头像url
      */
-    @NotBlank(message = "用户头像不可为空")
+    @NotBlank(message = "user icon can't be empty")
     private String iconURL;
 
     private String introduction;

@@ -35,7 +35,7 @@ public class BKBarrage implements Serializable {
     /**
      * 弹幕颜色
      */
-    private Integer color;
+    private String color;
 
     /**
      * 弹幕类型
