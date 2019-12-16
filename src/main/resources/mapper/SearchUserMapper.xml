@@ -15,7 +15,7 @@
 
     <select id="followByID" resultType="Integer">
         select count(*) from BK_Favourite
-        where uID=#{ID}
+        where favUserID=#{ID}
     </select>
 
     <select id="videoByID" resultType="Integer">

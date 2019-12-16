@@ -53,7 +53,7 @@ public class AboutMeServiceImpl implements AboutMeService {
         if (user == null){
             return ResultFactory.buildFailResult("Please Login First");
         }
-        PageHelper.startPage(pageNum,10);
+        PageHelper.startPage(pageNum,5);
         List<BKInteractiveVideo> videos = aboutMeMapper
                 .selectFavVideoByUid(user.getUID());
         PageInfo page = new PageInfo(videos);
@@ -80,7 +80,7 @@ public class AboutMeServiceImpl implements AboutMeService {
         if (user == null){
             return ResultFactory.buildFailResult("未登陆");
         }
-        PageHelper.startPage(pageNum,10);
+        PageHelper.startPage(pageNum,12);
         List<BKUserInfo> followers = aboutMeMapper
                 .selectUserFollowersByUid(user.getUID());
         PageInfo page = new PageInfo(followers);
@@ -93,7 +93,7 @@ public class AboutMeServiceImpl implements AboutMeService {
         if (user == null){
             return ResultFactory.buildFailResult("Please Login First");
         }
-        PageHelper.startPage(pageNum,10);
+        PageHelper.startPage(pageNum,12);
         List<BKUserInfo> followers = aboutMeMapper
                 .selectUsersFollowByUid(user.getUID());
         PageInfo page = new PageInfo(followers);
@@ -142,7 +142,7 @@ public class AboutMeServiceImpl implements AboutMeService {
 
     @Override
     public Result getOUserFavVideo(Integer oID , Integer pageNum){
-        PageHelper.startPage(pageNum,10);
+        PageHelper.startPage(pageNum,5);
         List<BKInteractiveVideo> videos = aboutMeMapper
                 .selectFavVideoByUid(oID);
         PageInfo page = new PageInfo(videos);
@@ -151,7 +151,7 @@ public class AboutMeServiceImpl implements AboutMeService {
 
     @Override
     public Result getOUserFollowers(Integer oID , Integer pageNum){
-        PageHelper.startPage(pageNum,10);
+        PageHelper.startPage(pageNum,12);
         List<BKUserInfo> followers = aboutMeMapper
                 .selectUserFollowersByUid(oID);
         PageInfo page = new PageInfo(followers);
@@ -160,7 +160,7 @@ public class AboutMeServiceImpl implements AboutMeService {
 
     @Override
     public Result getOUsersFollow(Integer oID , Integer pageNum){
-        PageHelper.startPage(pageNum,10);
+        PageHelper.startPage(pageNum,12);
         List<BKUserInfo> followers = aboutMeMapper
                 .selectUsersFollowByUid(oID);
         PageInfo page = new PageInfo(followers);
@@ -280,7 +280,7 @@ public class AboutMeServiceImpl implements AboutMeService {
 
     @Override
     public Result getHisVideos(Integer oID , Integer pageNum){
-        PageHelper.startPage(pageNum,10);
+        PageHelper.startPage(pageNum,5);
         List<BKInteractiveVideo> videos = aboutMeMapper
                 .selectHisVideoByUid(oID);
         PageInfo page = new PageInfo(videos);
@@ -307,7 +307,7 @@ public class AboutMeServiceImpl implements AboutMeService {
         if (user == null){
             return ResultFactory.buildFailResult("Please Login First");
         }
-        PageHelper.startPage(pageNum,10);
+        PageHelper.startPage(pageNum,5);
         List<BKInteractiveVideo> videos = aboutMeMapper
                 .selectBrowseHistoryByUid(user.getUID());
         PageInfo page = new PageInfo(videos);

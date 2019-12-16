@@ -136,7 +136,7 @@ public class InteractiveVideoServiceImpl implements InteractiveVideoService {
         }else {
             videoState = EDITABLE;
         }
-        PageHelper.startPage(pageNum,10);
+        PageHelper.startPage(pageNum,5);
         List<BKInteractiveVideo> videos = interactiveVideoMapper
                 .selectInterVideosByUserIf(user.getUID(), videoState);
         PageInfo page = new PageInfo(videos);

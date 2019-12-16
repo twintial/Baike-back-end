@@ -41,7 +41,7 @@
     <select id="selectUserFollowersByUid" resultMap="userFollowersMap">
         select BK_UserInfo.uID , BK_UserInfo.nickName , BK_UserInfo.icon
         from BK_UserInfo inner join BK_Favourite on BK_Favourite.uID = BK_UserInfo.uID
-        where BK_Favourite.favUserID = #{uID}
+        where BK_Favourite.favUserID = #{uID} and BK_UserInfo.state != 0
     </select>
 
     <!--    更新用户背景图像-->
@@ -78,7 +78,7 @@
         inner join BK_Favourite f
         on
         f.favUserID = u.uID
-        where f.uID = #{uID}
+        where f.uID = #{uID} and u.state != 0
     </select>
 
     <!--    查找收藏视频-->
@@ -99,7 +99,7 @@
     <select id="selectFavVideoByUid" resultMap="userFavVideoMap">
         select BK_InteractiveVideo.*
         from BK_InteractiveVideo inner join BK_Collection on BK_InteractiveVideo.interVideoID = BK_Collection.favVideoID
-        where BK_Collection.uID = #{uID}
+        where BK_Collection.uID = #{uID} and BK_InteractiveVideo.state != 0
     </select>
 
     <!--    查找浏览历史-->
@@ -116,7 +116,7 @@
         BK_InteractiveVideo.introduction , BK_InteractiveVideo.playVolume ,
         BK_InteractiveVideo.icon ,  BK_BrowseHistory.watchDate
         from BK_InteractiveVideo inner join BK_BrowseHistory on BK_InteractiveVideo.interVideoID = BK_BrowseHistory.watchVideoID
-        where BK_BrowseHistory.uID = #{uID} order by BK_BrowseHistory.watchDate desc
+        where BK_BrowseHistory.uID = #{uID} and BK_InteractiveVideo.state != 0 order by BK_BrowseHistory.watchDate desc
     </select>
 
 
